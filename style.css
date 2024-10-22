@@ -68,6 +68,60 @@ nav {
   height: 100%;
 }
 
+.topContainer {
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.firstView {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.caruselWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.caruselWrapper i {
+  font-size: 2rem;
+  margin: 10px;
+}
+
+.carusel {
+  max-width: 650px;
+  width: 650px;
+  height: 350px;
+  padding-top: 1%;
+  border-radius: 13px;
+  border: 1px solid #13274f;
+  display: flex;
+  align-items: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.carusel .item img {
+  width: 450px;
+  height: 450px;
+  object-fit: contain;
+}
+
+.advertise {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.arrow {
+  color: #024b8b;
+}
+
 @media (max-width: 768px) {
   .headerBar {
     display: flex;
