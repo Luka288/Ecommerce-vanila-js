@@ -122,6 +122,35 @@ nav {
   color: #024b8b;
 }
 
+.categories {
+  width: 300px;
+  height: 500px;
+  gap: 20px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  font-family: "Roboto", "Sans-Serif";
+}
+
+.categories li {
+  max-width: 290px;
+  width: 100%;
+  background-color: red;
+  font-size: 30px;
+  padding-left: 10px;
+  list-style: none;
+}
+
+.categories li a {
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.categories li a i {
+  font-size: 20px;
+}
+
 @media (max-width: 768px) {
   .headerBar {
     display: flex;
