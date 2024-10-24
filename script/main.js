@@ -50,10 +50,10 @@ function getCategories() {
         categoryBtn.addEventListener("click", function () {
           if (dropI.classList.contains("fa-chevron-down")) {
             dropI.classList.replace("fa-chevron-down", "fa-chevron-up");
-            li.style.height = "150px";
+            li.classList.add("expanded");
           } else {
             dropI.classList.replace("fa-chevron-up", "fa-chevron-down");
-            li.style.height = "auto";
+            li.classList.remove("expanded");
           }
         });
 
