@@ -2,16 +2,12 @@ const arrow = document.querySelectorAll(".arrow");
 const carusel = document.querySelector(".carusel");
 const categories = document.querySelector(".categories");
 const dropBrands = document.querySelector(".categoryBtn");
+const forPhones = document.querySelector("#forPhones");
+const forLaptops = document.querySelector("#forLaptops");
+const laptopBrands = document.getElementById("laptopBrands");
+const phoneBrands = document.getElementById("phoneBrands");
 
 init();
-
-// fetch(
-//   "https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=50"
-// )
-//   .then((res) => res.json())
-//   .then((res) => {
-//     console.log(res);
-//   });
 
 // https:api.everrest.educata.dev/shop/products/category/2?page_size=10
 
@@ -52,32 +48,7 @@ function getCategories() {
       }
       return res.json();
     })
-    .then((res) => {
-      res.forEach((lis) => {
-        const li = document.createElement("li");
-        const categoryBtn = document.createElement("a");
-        const dropI = document.createElement("i");
-
-        categoryBtn.addEventListener("click", function () {
-          if (dropI.classList.contains("fa-chevron-down")) {
-            dropI.classList.replace("fa-chevron-down", "fa-chevron-up");
-            li.classList.add("expanded");
-          } else {
-            dropI.classList.replace("fa-chevron-up", "fa-chevron-down");
-            li.classList.remove("expanded");
-          }
-        });
-
-        // <i class="fa-solid fa-chevron-down"></i>
-        dropI.classList.add("fa-solid", "fa-chevron-down");
-        li.classList.add("categoryLi");
-        categoryBtn.classList.add("categoryBtn");
-        categoryBtn.innerText = lis.name;
-        categoryBtn.appendChild(dropI);
-        li.appendChild(categoryBtn);
-        categories.appendChild(li);
-      });
-    });
+    .then((res) => {});
 }
 
 buildCategori();
@@ -90,12 +61,12 @@ async function buildCategori() {
 
   const li = document.querySelectorAll(".categoryLi");
 
-  parseRes.forEach((categoriID, index) => {
-    if (li[index]) {
-      li[index].setAttribute("category", `${categoriID.id}`);
-      console.log(categoriID);
-    }
-  });
+  // parseRes.forEach((categoriID, index) => {
+  //   if (li[index]) {
+  //     li[index].setAttribute("category", `${categoriID.id}`);
+  //     console.log(categoriID);
+  //   }
+  // });
 
   li.forEach((btn) => {
     btn.addEventListener("click", function () {
@@ -118,10 +89,13 @@ async function buildCategori() {
     });
   });
 }
-function specificInfo(url, callBack) {
-  fetch(url, {
-    method: "GET",
-  })
+function specificCategory(categoryId) {
+  fetch(
+    `https:api.everrest.educata.dev/shop/products/category/${categoryId}?page_size=10`,
+    {
+      method: "GET",
+    }
+  )
     .then((res) => {
       if (!res.ok) {
         throw new Error("Error");
@@ -129,9 +103,52 @@ function specificInfo(url, callBack) {
       return res.json();
     })
     .then((res) => {
-      callBack(res);
+      loadBrands(res, categoryId);
     });
 }
+
+function loadBrands(res, id) {
+  phoneBrands.innerHTML = "";
+  const brands = res.products.map((element) => element.brand);
+
+  const checkDuplicates = brands.filter(
+    (brand, index, self) => self.indexOf(brand) === index
+  );
+
+  checkDuplicates.forEach((el) => {
+    const p = document.createElement("p");
+    p.classList.add("brandBtn");
+    p.innerText = el;
+    if (id == 1) {
+      phoneBrands.appendChild(p);
+    } else {
+      laptopBrands.appendChild(p);
+    }
+  });
+
+  // const brandBtn = document.querySelector(".brandBtn");
+  // if (id === 1) {
+  //   phoneBrands.appendChild(brandBtn);
+  // } else if (id === 2) {
+  //   laptopBrands.appendChild(brandBtn);
+  // }
+
+  console.log(checkDuplicates);
+}
+
+forPhones.addEventListener("click", function (e) {
+  const id = forPhones.getAttribute("category");
+  if (id) {
+    specificCategory(id);
+  }
+});
+
+forLaptops.addEventListener("click", function (e) {
+  const id = forLaptops.getAttribute("category");
+  if (id) {
+    specificCategory(id);
+  }
+});
 
 arrow.forEach((btn) => {
   btn.addEventListener("click", function () {
