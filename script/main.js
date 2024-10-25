@@ -24,7 +24,9 @@ function getInfo() {
 
       return res.json();
     })
-    .then((res) => {})
+    .then((res) => {
+      // console.log(res);
+    })
     .catch((err) => {
       console.log(err);
     });
@@ -42,3 +44,13 @@ function getCategories() {
     })
     .then((res) => {});
 }
+
+arrow.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    if (btn.classList.contains("fa-circle-left")) {
+      carusel.scrollBy({ left: -350, behavior: "smooth" });
+    } else {
+      carusel.scrollBy({ left: 350, behavior: "smooth" });
+    }
+  });
+});
