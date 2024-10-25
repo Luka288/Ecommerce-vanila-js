@@ -48,6 +48,8 @@ function buildSaleCard(saleItem) {
   const priceContainer = document.createElement("div");
   const priceP = document.createElement("p");
   const beforeDiscount = document.createElement("p");
+  const discPercentage = document.createElement("p");
+  const wrapSpan = document.createElement("span");
 
   const splideSlide = document.createElement("li");
   splideSlide.classList.add("splide__slide");
@@ -57,16 +59,21 @@ function buildSaleCard(saleItem) {
   titleP.classList.add("productName");
   priceContainer.classList.add("salePriceWrap");
   beforeDiscount.classList.add("beforeDiscount");
+  discPercentage.classList.add("discountPercentage");
+  wrapSpan.classList.add("wrapPrices");
 
   image.src = saleItem.thumbnail;
   titleP.textContent = saleItem.title;
   beforeDiscount.textContent = saleItem.price.beforeDiscount;
+  discPercentage.textContent = `${saleItem.price.discountPercentage}`;
   priceP.textContent = `${saleItem.price.current} ${saleItem.price.currency}`;
 
   imgContainer.appendChild(image);
   saleCard.appendChild(imgContainer);
   saleCard.appendChild(titleP);
-  // priceContainer.appendChild(beforeDiscount);
+  wrapSpan.appendChild(beforeDiscount);
+  wrapSpan.appendChild(discPercentage);
+  priceContainer.appendChild(wrapSpan);
   priceContainer.appendChild(priceP);
   saleCard.appendChild(priceContainer);
   splideSlide.appendChild(saleCard);
@@ -88,5 +95,5 @@ function mountSplide() {
     autoWidth: true,
   });
 
-  splide.mount(); // Keep this line
+  splide.mount();
 }
