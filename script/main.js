@@ -64,8 +64,8 @@ function buildSaleCard(saleItem) {
 
   image.src = saleItem.thumbnail;
   titleP.textContent = saleItem.title;
-  beforeDiscount.textContent = saleItem.price.beforeDiscount;
-  discPercentage.textContent = `${saleItem.price.discountPercentage}`;
+  beforeDiscount.textContent = `${saleItem.price.beforeDiscount}${saleItem.price.currency}`;
+  discPercentage.textContent = `${saleItem.price.discountPercentage}%`;
   priceP.textContent = `${saleItem.price.current} ${saleItem.price.currency}`;
 
   imgContainer.appendChild(image);
@@ -87,12 +87,13 @@ function mountSplide() {
     height: "15rem",
     focus: "center",
     fixedHeight: "300px",
-    interval: 1500,
+    interval: 2000,
     pauseOnFocus: true,
     loop: true,
     autoplay: true,
     arrows: true,
     autoWidth: true,
+    pagination: false,
   });
 
   splide.mount();

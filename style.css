@@ -162,7 +162,7 @@ main {
 
 .splide__track {
   align-items: center;
-  height: auto;
+  height: 290px;
 }
 
 .salePriceWrap {
@@ -180,6 +180,11 @@ main {
 .discountPercentage {
   font-size: 14px;
   color: green;
+}
+
+.products {
+  width: 100%;
+  height: 500px;
 }
 
 @media (max-width: 768px) {
