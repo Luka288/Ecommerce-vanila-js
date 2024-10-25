@@ -149,11 +149,9 @@ nav {
 .categories .categoryDiv.expanded {
   height: auto;
   font-size: 15px;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
-.categories .categoryDiv.expanded p{
+.categories .categoryDiv.expanded p {
   font-size: 15px;
 }
 
@@ -164,6 +162,18 @@ nav {
 
 .categories li a i {
   font-size: 20px;
+}
+
+.phoneBtn {
+  font-size: 20px;
+}
+
+.laptopBtn {
+  font-size: 20px;
+}
+
+.brandContainer {
+  text-transform: capitalize;
 }
 
 @media (max-width: 768px) {

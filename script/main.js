@@ -4,8 +4,11 @@ const categories = document.querySelector(".categories");
 const dropBrands = document.querySelector(".categoryBtn");
 const forPhones = document.querySelector("#forPhones");
 const forLaptops = document.querySelector("#forLaptops");
+const DropDownForLaptop = document.querySelector(".categoryDiv");
 const laptopBrands = document.getElementById("laptopBrands");
 const phoneBrands = document.getElementById("phoneBrands");
+const laptopBtn = document.querySelector(".laptopBtn");
+const phoneBtn = document.querySelector(".phoneBtn");
 
 init();
 
@@ -108,7 +111,6 @@ function specificCategory(categoryId) {
 }
 
 function loadBrands(res, id) {
-  phoneBrands.innerHTML = "";
   const brands = res.products.map((element) => element.brand);
 
   const checkDuplicates = brands.filter(
@@ -126,26 +128,38 @@ function loadBrands(res, id) {
     }
   });
 
-  // const brandBtn = document.querySelector(".brandBtn");
-  // if (id === 1) {
-  //   phoneBrands.appendChild(brandBtn);
-  // } else if (id === 2) {
-  //   laptopBrands.appendChild(brandBtn);
-  // }
-
   console.log(checkDuplicates);
 }
 
-forPhones.addEventListener("click", function (e) {
+phoneBtn.addEventListener("click", function (e) {
   const id = forPhones.getAttribute("category");
-  if (id) {
+  if (!forPhones.classList.contains("expanded")) {
+    forPhones.classList.add("expanded");
+    phoneBrands.style.display = "block";
+  } else {
+    forPhones.classList.remove("expanded");
+    // phoneBrands.innerHTML = "";
+    phoneBrands.style.display = "none";
+    return;
+  }
+
+  if (phoneBrands.children.length === 0) {
     specificCategory(id);
   }
 });
 
-forLaptops.addEventListener("click", function (e) {
+laptopBtn.addEventListener("click", function (e) {
   const id = forLaptops.getAttribute("category");
-  if (id) {
+  if (!forLaptops.classList.contains("expanded")) {
+    forLaptops.classList.add("expanded");
+    laptopBrands.style.display = "block";
+  } else {
+    forLaptops.classList.remove("expanded");
+    // laptopBrands.innerHTML = "";
+    laptopBrands.style.display = "none";
+    return;
+  }
+  if (laptopBrands.children.length === 0) {
     specificCategory(id);
   }
 });
