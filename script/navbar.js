@@ -2,6 +2,14 @@
 
 const navigation = document.getElementById("navigation");
 
+window.addEventListener("scroll", function () {
+  if (window.scrollY > 100) {
+    navigation.style.backgroundColor = "#2B2624";
+  } else {
+    navigation.style.backgroundColor = "transparent";
+  }
+});
+
 function buildNavigation() {
   const logoSide = document.createElement("div");
   const buttonSide = document.createElement("div");
