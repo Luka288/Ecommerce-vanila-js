@@ -90,11 +90,11 @@ async function loadBrands(categoryID) {
       .filter((brand, index, self) => self.indexOf(brand) === index);
 
     laptopBrand.forEach((eachBrand) => {
-      brandNames(eachBrand, laptopBrand);
+      brandNames(eachBrand, laptopBrands);
     });
 
     phoneBrand.forEach((eachBrand) => {
-      brandNames(eachBrand, phoneBrand);
+      brandNames(eachBrand, phoneBrands);
     });
   } catch (err) {
     console.log(err);
