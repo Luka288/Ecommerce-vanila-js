@@ -78,7 +78,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0b0705;
+  background-color: #151e3d;
 }
 
 .firstView {
@@ -122,19 +122,19 @@ main {
   width: 230px;
   height: auto;
   font-family: "Roboto", "Sans-Serif";
-  border-radius: 10px;
-  box-shadow: 1px 3px 24px -4px rgba(0, 0, 0, 0.41);
-  -webkit-box-shadow: 1px 3px 24px -4px rgba(0, 0, 0, 0.41);
-  -moz-box-shadow: 1px 3px 24px -4px rgba(0, 0, 0, 0.41);
+  border: 1px solid white;
+  box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
+  -webkit-box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
+  -moz-box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
 }
 
-.saleCard .imgContainer img {
+.imgContainer img {
   width: 200px;
   height: 150px;
   object-fit: contain;
 }
 
-.saleCard .productName {
+.productName {
   text-transform: capitalize;
 }
 
@@ -172,6 +172,13 @@ main {
   gap: 30px;
 }
 
+.priceWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
 .wrapPrices {
   display: flex;
   gap: 10px;
@@ -185,6 +192,12 @@ main {
 .products {
   width: 100%;
   height: 500px;
+}
+
+.phones {
+  padding-top: 50px;
+  width: 100%;
+  height: 300px;
 }
 
 @media (max-width: 768px) {
