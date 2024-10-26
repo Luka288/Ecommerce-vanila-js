@@ -5,6 +5,9 @@ const splideList = document.querySelector(".splide__list");
 const phoneSplider = document.querySelector(".phoneSplide");
 const phonesList = document.querySelector(".phonesList");
 const showLaptop = document.querySelector(".showLaptop");
+const showPhone = document.querySelector(".showPhone");
+const phoneBrands = document.querySelector(".phoneBrands");
+const laptopBrands = document.querySelector(".laptopBrands");
 
 init();
 
@@ -46,7 +49,6 @@ function getInfo() {
       return res.json();
     })
     .then((res) => {
-      console.log(res);
       res.products.forEach((item) => {
         if (item.price.discountPercentage) {
           buildSaleCard(item);
@@ -54,7 +56,6 @@ function getInfo() {
       });
       res.products.forEach((element) => {
         if (element.category.name === "phones") {
-          console.log(element.title);
           phoneCard(element);
         }
       });
@@ -63,6 +64,47 @@ function getInfo() {
     .catch((err) => {
       console.log(err);
     });
+}
+
+async function loadBrands(categoryID) {
+  try {
+    const response = await fetch(
+      `https://api.everrest.educata.dev/shop/products/category/${categoryID}?page_size=50`
+    );
+
+    if (!response.ok) {
+      throw new Error("Error");
+    }
+
+    const parseResponse = await response.json();
+    console.log(parseResponse);
+
+    const phoneBrand = parseResponse.products
+      .filter((product) => product.category.name === "phones")
+      .map((product) => product.brand)
+      .filter((brand, index, self) => self.indexOf(brand) === index);
+
+    const laptopBrand = parseResponse.products
+      .filter((product) => product.category.name === "laptops")
+      .map((brandName) => brandName.brand)
+      .filter((brand, index, self) => self.indexOf(brand) === index);
+
+    laptopBrand.forEach((eachBrand) => {
+      brandNames(eachBrand, laptopBrand);
+    });
+
+    phoneBrand.forEach((eachBrand) => {
+      brandNames(eachBrand, phoneBrand);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function brandNames(name, container) {
+  const nameA = document.createElement("a");
+  nameA.textContent = name;
+  container.appendChild(nameA);
 }
 
 function buildSaleCard(saleItem) {
@@ -181,4 +223,14 @@ function mountSplide() {
   phoneSplideMount.mount();
 }
 
-showLaptop.addEventListener("mouseover", function () {});
+showLaptop.addEventListener("click", function () {
+  const laptopCategory = showLaptop.getAttribute("laptopId");
+  loadBrands(laptopCategory);
+  laptopBrands.classList.toggle("activeBrands");
+});
+
+showPhone.addEventListener("click", function () {
+  const phoneCategory = showPhone.getAttribute("phoneId");
+  loadBrands(phoneCategory);
+  phoneBrands.classList.toggle("activeBrands");
+});

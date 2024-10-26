@@ -56,6 +56,7 @@ nav {
 
 .buttonSide {
   width: 100%;
+  height: auto;
   display: flex;
   justify-content: flex-end;
 }
@@ -231,7 +232,7 @@ main {
 
 .category {
   width: 300px;
-  height: 300px;
+  height: auto;
   border: 1px solid;
 }
 
@@ -253,7 +254,9 @@ main {
   text-decoration: none;
   font-family: "Montserrat", "Sans-Serif";
   color: black;
-  font-size: 2.5rem;
+  text-transform: capitalize;
+  cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .brands a {
@@ -264,6 +267,10 @@ main {
 }
 
 .wrapCategory {
+  padding-left: 25px;
+}
+
+.activeBrands {
   display: flex;
 }
 
