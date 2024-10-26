@@ -4,6 +4,7 @@ const carusel = document.querySelector(".carusel");
 const splideList = document.querySelector(".splide__list");
 const phoneSplider = document.querySelector(".phoneSplide");
 const phonesList = document.querySelector(".phonesList");
+const showLaptop = document.querySelector(".showLaptop");
 
 init();
 
@@ -12,6 +13,22 @@ const saleContainer = [];
 
 function init() {
   getInfo();
+
+  ScrollReveal().reveal(".salesContainer", {
+    distance: "50px",
+    origin: "left",
+    duration: 1000,
+    delay: 200,
+    // reset: true,
+  });
+
+  ScrollReveal().reveal(".phoneSplide", {
+    distance: "50px",
+    origin: "right",
+    duration: 1000,
+    delay: 400,
+    // reset: true,
+  });
 }
 
 function getInfo() {
@@ -163,3 +180,5 @@ function mountSplide() {
 
   phoneSplideMount.mount();
 }
+
+showLaptop.addEventListener("mouseover", function () {});
