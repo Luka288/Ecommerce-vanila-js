@@ -8,6 +8,7 @@ const showLaptop = document.querySelector(".showLaptop");
 const showPhone = document.querySelector(".showPhone");
 const phoneBrands = document.querySelector(".phoneBrands");
 const laptopBrands = document.querySelector(".laptopBrands");
+const mainProducts = document.querySelector(".mainProducts");
 
 init();
 
@@ -49,6 +50,9 @@ function getInfo() {
       return res.json();
     })
     .then((res) => {
+      res.products.forEach((item) => {
+        productCard(item);
+      });
       res.products.forEach((item) => {
         if (item.price.discountPercentage) {
           buildSaleCard(item);
@@ -105,6 +109,39 @@ function brandNames(name, container) {
   const nameA = document.createElement("a");
   nameA.textContent = name;
   container.appendChild(nameA);
+}
+
+function productCard(product) {
+  const productCard = document.createElement("div");
+  const productImage = document.createElement("div");
+  const img = document.createElement("img");
+  const productTitle = document.createElement("h1");
+  const productPriceWrap = document.createElement("div");
+  const priceSpan = document.createElement("span");
+  const currPrice = document.createElement("p");
+
+  productCard.classList.add("productCard");
+  productImage.classList.add("productImage");
+  productTitle.classList.add("productTitle");
+  productPriceWrap.classList.add("priceWrap");
+  priceSpan.classList.add("priceSpan");
+  currPrice.classList.add("currentPrice");
+
+  if (product.price.discountPercentage) {
+    priceSpan.textContent = `${product.price.beforeDiscount}${product.price.currency}`;
+    productPriceWrap.appendChild(priceSpan);
+  }
+  img.src = product.thumbnail;
+  productTitle.textContent = product.title;
+  currPrice.textContent = `${product.price.current} ${product.price.currency}`;
+
+  productImage.appendChild(img);
+  productPriceWrap.appendChild(currPrice);
+  productCard.appendChild(productImage);
+  productCard.appendChild(productTitle);
+  productCard.appendChild(productPriceWrap);
+
+  mainProducts.appendChild(productCard);
 }
 
 function buildSaleCard(saleItem) {

@@ -228,6 +228,8 @@ main {
   width: 100%;
   height: 500px;
   padding-top: 50px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .category {
@@ -266,12 +268,20 @@ main {
   font-family: "Montserrat", "Sans-Serif";
 }
 
-.wrapCategory {
-  padding-left: 25px;
-}
-
 .activeBrands {
   display: flex;
+}
+
+.mainProducts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 70%;
+  height: 100%;
+}
+
+.searchBar {
+  width: 100%;
+  height: 200px;
 }
 
 @media (max-width: 768px) {
