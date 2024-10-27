@@ -191,13 +191,6 @@ main {
   gap: 30px;
 }
 
-.priceWrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-}
-
 .wrapPrices {
   display: flex;
   gap: 10px;
@@ -273,8 +266,10 @@ main {
 }
 
 .mainProducts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 30px;
   width: 70%;
   height: 100%;
 }
@@ -282,6 +277,64 @@ main {
 .searchBar {
   width: 100%;
   height: 200px;
+}
+
+.productCard {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid;
+}
+
+.productImage img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.productTitle {
+  font-size: 20px;
+  font-family: "Montserrat", "Sans-Serif";
+  font-weight: 400;
+}
+
+.priceWrap {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  font-family: "Montserrat", "Sans-Serif";
+}
+
+.priceWrap span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: red;
+}
+
+.priceWrap span p {
+  color: green;
+}
+
+.productsWrap {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.paginator {
+  width: 85%;
+  height: auto;
+}
+
+.paginator .wrapPages {
+  gap: 15px;
+  display: flex;
+  justify-content: center;
+  list-style: none;
 }
 
 @media (max-width: 768px) {

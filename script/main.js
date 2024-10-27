@@ -8,15 +8,20 @@ const showLaptop = document.querySelector(".showLaptop");
 const showPhone = document.querySelector(".showPhone");
 const phoneBrands = document.querySelector(".phoneBrands");
 const laptopBrands = document.querySelector(".laptopBrands");
-const mainProducts = document.querySelector(".mainProducts");
+const mainProducts = document.querySelector(".productsWrap");
+const paginator = document.querySelector(".paginator");
+
+let currPage = 1;
+let totalProducts;
+let pages;
 
 init();
 
 // https:api.everrest.educata.dev/shop/products/category/2?page_size=10
-const saleContainer = [];
 
 function init() {
   getInfo();
+  pagination();
 
   ScrollReveal().reveal(".salesContainer", {
     distance: "50px",
@@ -37,7 +42,7 @@ function init() {
 
 function getInfo() {
   fetch(
-    "https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=50",
+    `https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=10`,
     {
       method: "GET",
     }
@@ -50,9 +55,6 @@ function getInfo() {
       return res.json();
     })
     .then((res) => {
-      res.products.forEach((item) => {
-        productCard(item);
-      });
       res.products.forEach((item) => {
         if (item.price.discountPercentage) {
           buildSaleCard(item);
@@ -105,6 +107,46 @@ async function loadBrands(categoryID) {
   }
 }
 
+async function pagination() {
+  try {
+    const res = await fetch(
+      `https://api.everrest.educata.dev/shop/products/all?page_index=${currPage}&page_size=10`
+    );
+
+    if (!res.ok) {
+      throw new Error("Error");
+    }
+
+    const parseRes = await res.json();
+
+    parseRes.products.forEach((item) => {
+      productCard(item);
+    });
+
+    totalProducts = parseRes.total;
+    pages = Math.ceil(totalProducts / parseRes.limit);
+
+    const pagesUl = document.createElement("ul");
+    for (let i = 1; i <= pages; i++) {
+      const pageLi = document.createElement("li");
+
+      pagesUl.classList.add("wrapPages");
+      pageLi.classList.add("paginationPage");
+
+      pageLi.textContent = i;
+      pageLi.value = i;
+
+      pagesUl.appendChild(pageLi);
+      paginator.appendChild(pagesUl);
+      console.log(i);
+    }
+
+    console.log(pages);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function brandNames(name, container) {
   const nameA = document.createElement("a");
   nameA.textContent = name;
@@ -119,15 +161,19 @@ function productCard(product) {
   const productPriceWrap = document.createElement("div");
   const priceSpan = document.createElement("span");
   const currPrice = document.createElement("p");
+  const salePercent = document.createElement("p");
+  const paginator = document.querySelector("div");
 
+  priceSpan.classList.add("priceSpan");
+  salePercent.classList.add("discountPercent");
   productCard.classList.add("productCard");
   productImage.classList.add("productImage");
   productTitle.classList.add("productTitle");
   productPriceWrap.classList.add("priceWrap");
-  priceSpan.classList.add("priceSpan");
   currPrice.classList.add("currentPrice");
 
   if (product.price.discountPercentage) {
+    salePercent.textContent = `${product.price.discountPercentage}%`;
     priceSpan.textContent = `${product.price.beforeDiscount}${product.price.currency}`;
     productPriceWrap.appendChild(priceSpan);
   }
@@ -135,6 +181,7 @@ function productCard(product) {
   productTitle.textContent = product.title;
   currPrice.textContent = `${product.price.current} ${product.price.currency}`;
 
+  priceSpan.appendChild(salePercent);
   productImage.appendChild(img);
   productPriceWrap.appendChild(currPrice);
   productCard.appendChild(productImage);
@@ -206,8 +253,10 @@ function phoneCard(ProductPhone) {
 
   image.src = ProductPhone.thumbnail;
   titleP.textContent = ProductPhone.title;
-  beforeDiscount.textContent = `${ProductPhone.price.beforeDiscount} ${ProductPhone.price.currency}`;
-  percentage.textContent = `${ProductPhone.price.discountPercentage}%`;
+  if (ProductPhone.price.discountPercentage) {
+    beforeDiscount.textContent = `${ProductPhone.price.beforeDiscount} ${ProductPhone.price.currency}`;
+    percentage.textContent = `${ProductPhone.price.discountPercentage}%`;
+  }
   price.textContent = `${ProductPhone.price.current} ${ProductPhone.price.currency}`;
 
   imgContainer.appendChild(image);
