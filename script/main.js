@@ -10,10 +10,18 @@ const phoneBrands = document.querySelector(".phoneBrands");
 const laptopBrands = document.querySelector(".laptopBrands");
 const mainProducts = document.querySelector(".productsWrap");
 const paginator = document.querySelector(".paginator");
+const activeBrands = document.querySelector(".activeBrands");
+const category = document.querySelector(".category");
 
 let currPage = 1;
 let totalProducts;
 let pages;
+
+const slides = {
+  name: "",
+  id: 0,
+  url: "",
+};
 
 init();
 
@@ -21,23 +29,8 @@ init();
 
 function init() {
   getInfo();
-  pagination();
-
-  ScrollReveal().reveal(".salesContainer", {
-    distance: "50px",
-    origin: "left",
-    duration: 1000,
-    delay: 200,
-    // reset: true,
-  });
-
-  ScrollReveal().reveal(".phoneSplide", {
-    distance: "50px",
-    origin: "right",
-    duration: 1000,
-    delay: 400,
-    // reset: true,
-  });
+  // pagination();
+  mountSplide();
 }
 
 function getInfo() {
@@ -57,15 +50,15 @@ function getInfo() {
     .then((res) => {
       res.products.forEach((item) => {
         if (item.price.discountPercentage) {
-          buildSaleCard(item);
+          // buildSaleCard(item);
         }
       });
-      res.products.forEach((element) => {
-        if (element.category.name === "phones") {
-          phoneCard(element);
-        }
-      });
-      mountSplide();
+      // res.products.forEach((element) => {
+      //   if (element.category.name === "phones") {
+      //     phoneCard(element);
+      //   }
+      // });
+      // mountSplide();
     })
     .catch((err) => {
       console.log(err);
@@ -120,7 +113,7 @@ async function pagination() {
     const parseRes = await res.json();
 
     parseRes.products.forEach((item) => {
-      productCard(item);
+      // productCard(item);
     });
 
     totalProducts = parseRes.total;
@@ -272,51 +265,78 @@ function phoneCard(ProductPhone) {
 }
 
 function mountSplide() {
-  var splide = new Splide(".splide", {
-    perPage: 3,
-    gap: "50px",
-    type: "loop",
-    height: "15rem",
+  var topSplide = new Splide(".topSplide", {
     focus: "center",
-    fixedHeight: "300px",
-    interval: 2000,
-    pauseOnFocus: true,
+    type: "fade",
+    interval: 1000,
+    autoPlay: true,
     loop: true,
-    autoplay: true,
-    arrows: false,
-    autoWidth: true,
-    pagination: false,
+    rewind: true,
   });
 
-  splide.mount();
-
-  var phoneSplideMount = new Splide(".phoneSplide", {
-    perPage: 3,
-    gap: "50px",
-    type: "loop",
-    height: "15rem",
-    focus: "center",
-    fixedHeight: "300px",
-    interval: 2000,
-    pauseOnFocus: true,
-    loop: true,
-    autoplay: true,
-    arrows: false,
-    autoWidth: true,
-    pagination: false,
-  });
-
-  phoneSplideMount.mount();
+  topSplide.mount();
 }
 
-showLaptop.addEventListener("click", function () {
+// laptop category
+showLaptop.addEventListener("mouseover", function () {
   const laptopCategory = showLaptop.getAttribute("laptopId");
-  loadBrands(laptopCategory);
-  laptopBrands.classList.toggle("activeBrands");
+  if (laptopBrands.children.length == 0) {
+    loadBrands(laptopCategory, laptopBrands);
+  }
+  laptopBrands.classList.add("activeBrands");
+  category.style.borderTopRightRadius = "0px";
+  category.style.borderBottomRightRadius = "0px";
 });
 
-showPhone.addEventListener("click", function () {
-  const phoneCategory = showPhone.getAttribute("phoneId");
-  loadBrands(phoneCategory);
-  phoneBrands.classList.toggle("activeBrands");
+showLaptop.addEventListener("mouseout", function () {
+  laptopBrands.classList.remove("activeBrands");
+  category.style.borderTopRightRadius = "10px";
+  category.style.borderBottomRightRadius = "10px";
 });
+
+laptopBrands.addEventListener("mouseover", function () {
+  laptopBrands.classList.add("activeBrands");
+  category.style.borderTopRightRadius = "0px";
+  category.style.borderBottomRightRadius = "0px";
+});
+
+laptopBrands.addEventListener("mouseout", function () {
+  laptopBrands.classList.remove("activeBrands");
+  category.style.borderTopRightRadius = "10px";
+  category.style.borderBottomRightRadius = "10px";
+});
+
+// phone category
+showPhone.addEventListener("mouseover", function () {
+  const phoneCategory = showPhone.getAttribute("phoneId");
+  if (phoneBrands.children.length == 0) {
+    loadBrands(phoneCategory, laptopBrands);
+  }
+  phoneBrands.classList.add("activeBrands");
+  category.style.borderTopRightRadius = "0px";
+  category.style.borderBottomRightRadius = "0px";
+});
+
+showPhone.addEventListener("mouseout", function () {
+  phoneBrands.classList.remove("activeBrands");
+  category.style.borderTopRightRadius = "10px";
+  category.style.borderBottomRightRadius = "10px";
+});
+
+phoneBrands.addEventListener("mouseover", function () {
+  phoneBrands.classList.add("activeBrands");
+  category.style.borderTopRightRadius = "0px";
+  category.style.borderBottomRightRadius = "0px";
+});
+
+phoneBrands.addEventListener("mouseout", function () {
+  phoneBrands.classList.remove("activeBrands");
+  category.style.borderTopRightRadius = "10px";
+  category.style.borderBottomRightRadius = "10px";
+});
+
+// showPhone.addEventListener("mouseout", function () {
+//   const phoneCategory = showPhone.getAttribute("phoneId");
+//   loadBrands(phoneCategory);
+//   phoneBrands.classList.remove("activeBrands");
+// });

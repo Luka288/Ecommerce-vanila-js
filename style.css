@@ -9,11 +9,11 @@ nav {
   height: 80px;
   position: fixed;
   z-index: 1121;
-  background-color: transparent;
+  background-color: #ff5a36;
   color: ghostwhite;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   transition: all 0.5s;
 }
 
@@ -36,7 +36,7 @@ nav {
 }
 
 .logoSide {
-  width: 100%;
+  /* width: 100%; */
   padding-left: 10px;
   font-family: "Roboto", sans-serif;
 }
@@ -55,7 +55,7 @@ nav {
 }
 
 .buttonSide {
-  width: 100%;
+  /* width: 100%; */
   height: auto;
   display: flex;
   justify-content: flex-end;
@@ -92,6 +92,7 @@ nav {
 main {
   height: 100%;
   z-index: 200;
+  padding-top: 95px;
 }
 
 .titleContainer {
@@ -226,9 +227,12 @@ main {
 }
 
 .category {
+  position: relative;
   width: 300px;
-  height: auto;
-  border: 1px solid;
+  height: 300px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
 .brands {
@@ -241,7 +245,19 @@ main {
   font-size: 1.5rem;
 }
 
+.buttons ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
 .buttons ul li {
+  padding-top: 10px;
+  padding-left: 15px;
   list-style: none;
 }
 
@@ -251,10 +267,17 @@ main {
   color: black;
   text-transform: capitalize;
   cursor: pointer;
+  display: flex;
+  font-weight: 300;
+  gap: 15px;
+  width: 100%;
+  height: 100%;
   font-size: 1.5rem;
 }
 
 .brands a {
+  font-weight: 240;
+  font-size: 20px;
   text-decoration: none;
   color: black;
   text-transform: capitalize;
@@ -263,12 +286,32 @@ main {
 
 .activeBrands {
   display: flex;
+  border: none;
+  background-color: white;
+  font-size: 10px;
+  /* box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.1); */
+  box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.1);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 300px;
+  height: 300px;
+}
+.activeBrands a {
+  font-size: 14px;
+  font-weight: 350;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+}
+
+.activeBrands a:hover {
+  color: #ff5a36;
+  /* background-color: #3c3c3c; */
+  transition: ease-in 0.2s;
 }
 
 .mainProducts {
   display: flex;
   flex-wrap: wrap;
-
   gap: 30px;
   width: 70%;
   height: 100%;
@@ -335,6 +378,106 @@ main {
   display: flex;
   justify-content: center;
   list-style: none;
+}
+
+.advertise {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  width: 100%;
+  height: 250px;
+}
+
+.advertise .ad {
+  width: 50%;
+  height: 250px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url("https://www.apple.com/newsroom/images/product/services/lifestyle/Apple-Data-Privacy-Day-hero_big.jpg.slideshow-large.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.advertise .ad h1 {
+  color: white;
+  text-transform: capitalize;
+  font-family: "Montserrat";
+  font-weight: 500;
+}
+
+.newArrival {
+  padding-top: 75px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.newProduct {
+  width: 50%;
+  height: 270px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.newProduct img {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+
+.laptopBrands,
+.phoneBrands {
+  position: absolute;
+  z-index: 100;
+  top: 0px;
+  width: 300px;
+  left: 300px;
+}
+
+.top {
+  width: 100%;
+  gap: 125px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.firstSplideImg {
+  width: 100%;
+  height: auto;
+  object-position: center;
+}
+
+.slide {
+  width: 895px;
+  height: 340px;
+}
+
+.splide__arrow {
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+}
+
+.splide__arrow svg {
+  color: white;
+}
+.showLaptop {
+  display: flex;
+  align-items: center;
+}
+
+.showLaptop img {
+  width: 25px;
+  height: 25px;
 }
 
 @media (max-width: 768px) {

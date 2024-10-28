@@ -2,13 +2,13 @@
 
 const navigation = document.getElementById("navigation");
 
-window.addEventListener("scroll", function () {
-  if (window.scrollY > 100) {
-    navigation.style.backgroundColor = "#1C2641";
-  } else {
-    navigation.style.backgroundColor = "transparent";
-  }
-});
+// window.addEventListener("scroll", function () {
+//   if (window.scrollY > 100) {
+//     navigation.style.backgroundColor = "#1C2641";
+//   } else {
+//     navigation.style.backgroundColor = "transparent";
+//   }
+// });
 
 function buildNavigation() {
   const logoSide = document.createElement("div");
