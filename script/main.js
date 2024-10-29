@@ -50,15 +50,8 @@ function getInfo() {
     .then((res) => {
       res.products.forEach((item) => {
         if (item.price.discountPercentage) {
-          // buildSaleCard(item);
         }
       });
-      // res.products.forEach((element) => {
-      //   if (element.category.name === "phones") {
-      //     phoneCard(element);
-      //   }
-      // });
-      // mountSplide();
     })
     .catch((err) => {
       console.log(err);
@@ -335,9 +328,3 @@ phoneBrands.addEventListener("mouseout", function () {
   category.style.borderTopRightRadius = "10px";
   category.style.borderBottomRightRadius = "10px";
 });
-
-// showPhone.addEventListener("mouseout", function () {
-//   const phoneCategory = showPhone.getAttribute("phoneId");
-//   loadBrands(phoneCategory);
-//   phoneBrands.classList.remove("activeBrands");
-// });

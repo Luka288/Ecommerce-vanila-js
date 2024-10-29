@@ -110,3 +110,6 @@ function buildNavigation() {
 }
 
 buildNavigation();
+
+// sort
+//https://api.everrest.educata.dev/shop/products/search?page_size=2&page_index=1&sort_by=title&sort_direction=asc&price_min=500&price_max=2000
