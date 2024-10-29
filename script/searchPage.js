@@ -1,3 +1,5 @@
+const title = document.querySelector("title");
+
 getSearchVal();
 
 function getSearchVal() {
@@ -18,6 +20,8 @@ async function loadProducts(searchQuery) {
     }
 
     const parseRes = await res.json();
+
+    title.textContent = `Search Results ${searchQuery}`;
 
     console.log(parseRes);
   } catch (error) {}
