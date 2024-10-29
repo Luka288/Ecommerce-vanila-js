@@ -269,6 +269,7 @@ function mountSplide() {
     focus: "center",
     type: "fade",
     interval: 1000,
+    pagination: false,
     autoPlay: true,
     loop: true,
     rewind: true,

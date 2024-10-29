@@ -2,6 +2,14 @@
 
 const navigation = document.getElementById("navigation");
 
+// window.addEventListener("scroll", function () {
+//   if (window.scrollY > 100) {
+//     navigation.style.backgroundColor = "#1C2641";
+//   } else {
+//     navigation.style.backgroundColor = "transparent";
+//   }
+// });
+
 function buildNavigation() {
   const logoSide = document.createElement("div");
   const buttonSide = document.createElement("div");
@@ -17,18 +25,6 @@ function buildNavigation() {
   const wrapInside = document.createElement("li");
   const userIcon = document.createElement("i");
   const authText = document.createElement("p");
-  const searchInput = document.createElement("input");
-  const searchWrap = document.createElement("form");
-  const searchIcon = document.createElement("i");
-
-  searchIcon.classList.add("fa-solid", "fa-magnifying-glass", "searchIcon");
-
-  searchWrap.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const searchValue = searchInput.value;
-    window.location = "search.html";
-    console.log(searchValue);
-  });
 
   let num = 100;
 
@@ -48,12 +44,12 @@ function buildNavigation() {
     burger.classList.add("headerBar", "fa-solid", "fa-bars");
 
     wrapInside.classList.add("wrapInside");
-    // loginBtn.classList.add("nav-item");
-    // loginBtn.textContent = "login";
-    // loginBtn.href = "auth";
+    loginBtn.classList.add("nav-item");
+    loginBtn.textContent = "login";
+    loginBtn.href = "auth";
 
     regLogin.classList.add("nav-items");
-    userIcon.classList.add("fa-regular", "fa-user", "userIcon");
+    userIcon.classList.add("fa-solid", "fa-user");
     authText.textContent = "Login";
     authText.classList.add("nav-item");
 
@@ -61,19 +57,21 @@ function buildNavigation() {
     registerBtn.textContent = "register";
     registerBtn.href = "auth";
 
-    searchWrap.classList.add("wrapSearch");
-    searchInput.classList.add("searchBar");
-    searchWrap.appendChild(searchIcon);
-    searchWrap.appendChild(searchInput);
-    navigation.appendChild(searchWrap);
-
+    // ulWrapper.classList.add("nav-items");
     buttonSide.classList.add("buttonSide");
+    // loginLi.appendChild(loginBtn);
+    // regLi.appendChild(registerBtn);
+    // ulWrapper.appendChild(loginLi);
+    // ulWrapper.appendChild(regLi);
     wrapInside.appendChild(userIcon);
     wrapInside.appendChild(authText);
     regLogin.appendChild(wrapInside);
     buttonSide.appendChild(burger);
     buttonSide.appendChild(regLogin);
     navigation.appendChild(buttonSide);
+
+    // const test = document.querySelector(".test");
+    // console.log(clone);
 
     const burgerBar = document.querySelector(".headerBar");
     const navDropDown = document.querySelector(".navDropdown");
