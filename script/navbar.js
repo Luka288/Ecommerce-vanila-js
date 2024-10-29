@@ -26,7 +26,10 @@ function buildNavigation() {
   searchWrap.addEventListener("submit", function (e) {
     e.preventDefault();
     const searchValue = searchInput.value;
-    window.location = "search.html";
+    if (window.location !== "search.html") {
+      window.location = "search.html";
+    }
+    window.location = `search.html?search=${encodeURIComponent(searchValue)}`;
     console.log(searchValue);
   });
 
