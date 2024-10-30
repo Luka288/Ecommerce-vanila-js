@@ -1,3 +1,10 @@
+:root {
+  --main-color: #ff5a36;
+  --product-card-font-size: 12px;
+  --main-font: "Roboto", Sans-Serif;
+  --secondary-font: "Montserrat", Sans-Serif;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -9,7 +16,7 @@ nav {
   height: 80px;
   position: fixed;
   z-index: 1121;
-  background-color: #ff5a36;
+  background-color: var(--main-color);
   color: ghostwhite;
   display: flex;
   align-items: center;
@@ -20,7 +27,7 @@ nav {
 .nav-items {
   display: flex;
   align-items: center;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--main-font);
   border-radius: 12px;
   background-color: white;
   width: 130px;
@@ -41,7 +48,7 @@ nav {
 .logoSide {
   /* width: 100%; */
   padding-left: 10%;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--main-font);
 }
 
 .logo {
@@ -136,14 +143,10 @@ main {
   font-weight: 450;
 }
 
-.splide {
-  height: 240px;
-}
-
 .saleCard {
   width: 230px;
   height: auto;
-  font-family: "Roboto", "Sans-Serif";
+  font-family: var(--main-font);
   border: 1px solid white;
   box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
   -webkit-box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
@@ -182,10 +185,10 @@ main {
   color: red;
 }
 
-.splide__track {
+.topSplideTrack {
   display: flex;
   flex-direction: column;
-  height: 295px;
+  height: 300px;
 }
 
 .phoneSlide {
@@ -218,19 +221,11 @@ main {
 .phone-card {
   width: 230px;
   height: auto;
-  font-family: "Roboto", "Sans-Serif";
+  font-family: var(--main-font);
   border: 1px solid white;
   box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
   -webkit-box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
   -moz-box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
-}
-
-.products {
-  width: 100%;
-  height: 500px;
-  padding-top: 50px;
-  display: flex;
-  justify-content: space-around;
 }
 
 .category {
@@ -311,7 +306,7 @@ main {
 }
 
 .activeBrands a:hover {
-  color: #ff5a36;
+  color: var(--main-color);
   /* background-color: #3c3c3c; */
   transition: ease-in 0.2s;
 }
@@ -322,15 +317,6 @@ main {
   gap: 30px;
   width: 70%;
   height: 100%;
-}
-
-.productCard {
-  width: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border: 1px solid;
 }
 
 .productImage img {
@@ -418,15 +404,6 @@ main {
   height: auto;
   display: flex;
   justify-content: center;
-}
-
-.newProduct {
-  width: 50%;
-  height: 270px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
 }
 
 .newProduct img {
@@ -558,12 +535,68 @@ main {
 
 .searchIcon {
   position: absolute;
-  color: #ff5a36;
+  color: var(--main-color);
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
   z-index: 2;
   font-size: 20px;
+}
+
+.sectionTitle h1 {
+  font-family: var(--main-font);
+  font-weight: 600;
+}
+
+.products {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.appleProducts {
+  padding-top: 50px;
+  width: 69%;
+}
+
+.productCard {
+  width: 200px;
+  height: 200px;
+}
+
+.productCard img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.bottomSplide {
+  height: 320px;
+}
+
+.productTitle {
+  font-size: var(--product-card-font-size);
+  font-family: var(--secondary-font);
+}
+
+.viewProductUl {
+  width: 110px;
+  height: 40px;
+  list-style: none;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.viewProductLi {
+  text-align: center;
+}
+
+.viewProduct {
+  cursor: pointer;
+  font-family: var(--secondary-font);
 }
 
 @media (max-width: 768px) {

@@ -43,7 +43,7 @@
     <nav id="navigation"></nav>
     <div class="navDropdown"></div>
     <main>
-      <div class="top">
+      <section class="top">
         <div class="wrapCategory">
           <div class="category">
             <div class="buttons">
@@ -60,12 +60,9 @@
             </div>
           </div>
         </div>
-        <section class="slide">
-          <section
-            class="splide topSplide"
-            aria-label="Basic Structure Example"
-          >
-            <div class="splide__track">
+        <div class="slide">
+          <div class="splide topSplide" aria-label="Basic Structure Example">
+            <div class="splide__track topSplideTrack">
               <ul class="splide__list">
                 <li class="splide__slide">
                   <img
@@ -90,9 +87,24 @@
                 </li>
               </ul>
             </div>
-          </section>
-        </section>
-      </div>
+          </div>
+        </div>
+      </section>
+      <section class="products">
+        <div class="appleProducts">
+          <div class="sectionTitle">
+            <h1>Discover apple products</h1>
+          </div>
+          <div
+            class="splide productSplider"
+            aria-label="Basic Structure Example"
+          >
+            <div class="splide__track">
+              <ul class="splide__list" id="appleSide"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>

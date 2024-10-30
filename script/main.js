@@ -12,6 +12,8 @@ const mainProducts = document.querySelector(".productsWrap");
 const paginator = document.querySelector(".paginator");
 const activeBrands = document.querySelector(".activeBrands");
 const category = document.querySelector(".category");
+const appleProducts = document.querySelector(".appleProducts");
+const splideUl = document.getElementById("appleSide");
 
 let currPage = 1;
 let totalProducts;
@@ -28,35 +30,84 @@ init();
 // https:api.everrest.educata.dev/shop/products/category/2?page_size=10
 
 function init() {
-  getInfo();
   // pagination();
   mountSplide();
 }
 
-function getInfo() {
-  fetch(
-    `https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=10`,
-    {
-      method: "GET",
-    }
-  )
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error();
+async function getTopic(brand, callback) {
+  try {
+    const res = await fetch(
+      `https://api.everrest.educata.dev/shop/products/brand/${brand}?page_size=7`,
+      {
+        method: "GET",
       }
+    );
 
-      return res.json();
-    })
-    .then((res) => {
-      res.products.forEach((item) => {
-        if (item.price.discountPercentage) {
-        }
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    if (!res.ok) {
+      throw new Error("Somthing worng happned");
+    }
+
+    const parseInfo = await res.json();
+
+    callback(parseInfo.products);
+  } catch (error) {}
 }
+
+getTopic("apple", function (res) {
+  res.forEach((item) => {
+    const li = document.createElement("li");
+
+    const productCard = document.createElement("div");
+    const imgDiv = document.createElement("div");
+    const img = document.createElement("img");
+    const priceCon = document.createElement("div");
+    const price = document.createElement("p");
+    const titleCon = document.createElement("div");
+    const titleP = document.createElement("p");
+    const buttonCon = document.createElement("div");
+    const btnUl = document.createElement("ul");
+    const btnLi = document.createElement("li");
+    const button = document.createElement("a");
+    const span = document.createElement("span");
+
+    imgDiv.classList.add("productImg");
+    li.classList.add("splide__slide", "bottomSplide");
+    productCard.classList.add("productCard");
+
+    img.src = item.thumbnail;
+    if (item.price.discountPercentage) {
+      span.textContent = price.beforeDiscount;
+      price.textContent = `${item.price.current} ${item.price.currency}`;
+    } else {
+      price.textContent = `${item.price.current}`;
+    }
+
+    btnLi.classList.add("viewProductLi");
+    btnUl.classList.add("viewProductUl");
+    titleP.classList.add("productTitle");
+    button.classList.add("viewProduct");
+    titleP.textContent = item.title;
+    button.textContent = "View product";
+
+    imgDiv.appendChild(img);
+    productCard.appendChild(imgDiv);
+    if (item.price.discountPercentage) {
+      priceCon.appendChild(span);
+    }
+    priceCon.appendChild(price);
+    productCard.appendChild(priceCon);
+    titleCon.appendChild(titleP);
+    productCard.appendChild(titleCon);
+    btnLi.appendChild(button);
+    btnUl.appendChild(btnLi);
+    buttonCon.appendChild(btnUl);
+    productCard.appendChild(buttonCon);
+
+    li.appendChild(productCard);
+    splideUl.appendChild(li);
+  });
+  mountSplide();
+});
 
 async function loadBrands(categoryID) {
   try {
@@ -268,6 +319,15 @@ function mountSplide() {
     rewind: true,
   });
 
+  var productSplide = new Splide(".productSplider", {
+    focus: "right",
+    type: "loop",
+    pagination: false,
+    perPage: 4,
+    perMove: 1,
+  });
+
+  productSplide.mount();
   topSplide.mount();
 }
 
