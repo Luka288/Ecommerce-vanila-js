@@ -97,136 +97,16 @@ nav {
   background-color: #151e3d;
 }
 
-.firstView {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 main {
   height: 100%;
   z-index: 200;
   padding-top: 95px;
 }
 
-.titleContainer {
-  width: 100%;
-  text-align: center;
-  color: white;
-}
-
-.titleContainer h1 {
-  font-family: "Montserrat", "Sans-Serif";
-}
-
-.phonesTitle {
-  width: 100%;
-  text-align: center;
-  color: white;
-}
-.phonesTitle h1 {
-  font-family: "Montserrat", "Sans-Serif";
-  padding-left: 30px;
-  font-weight: 450;
-  color: black;
-}
-
-.salesContainer {
-  width: 100%;
-  height: 300px;
-}
-
-.salesContainer .salesTitle h1 {
-  text-align: center;
-  font-family: "Montserrat", "Sans-Serif";
-  padding-left: 30px;
-  font-weight: 450;
-}
-
-/* .saleCard {
-  width: 230px;
-  height: auto;
-  font-family: var(--main-font);
-  border: 1px solid white;
-  box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
-  -webkit-box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
-  -moz-box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
-} */
-
-.productName {
-  text-transform: capitalize;
-}
-
-.saleCard p {
-  text-align: center;
-}
-
-.imgContainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.imgContainer img {
-  width: 200px;
-  height: 150px;
-  object-fit: contain;
-}
-
-.saleCard img {
-  width: 100%;
-  height: 150px;
-  object-fit: contain;
-}
-
-.beforeDiscount {
-  text-decoration: line-through;
-  color: red;
-}
-
 .topSplideTrack {
   display: flex;
   flex-direction: column;
   height: 300px;
-}
-
-.phoneSlide {
-  height: 100%;
-}
-
-.salePriceWrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-}
-
-.wrapPrices {
-  display: flex;
-  gap: 10px;
-}
-
-.discountPercentage {
-  font-size: 14px;
-  color: green;
-}
-
-.phones {
-  padding-top: 50px;
-  width: 100%;
-  height: 300px;
-}
-
-.phone-card {
-  width: 230px;
-  height: auto;
-  font-family: var(--main-font);
-  border: 1px solid white;
-  box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
-  -webkit-box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
-  -moz-box-shadow: -3px -3px 16px -5px rgba(0, 0, 0, 0.34);
 }
 
 .category {
@@ -312,107 +192,6 @@ main {
   transition: ease-in 0.2s;
 }
 
-.mainProducts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  width: 70%;
-  height: 100%;
-}
-
-.productImage img {
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-}
-
-.productTitle {
-  font-size: 20px;
-  font-family: "Montserrat", "Sans-Serif";
-  font-weight: 400;
-}
-
-.priceWrap {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  font-family: "Montserrat", "Sans-Serif";
-}
-
-.priceWrap span {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: red;
-}
-
-/* .priceWrap span p {
-  color: green;
-} */
-
-/* .productsWrap {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-} */
-
-/* .paginator {
-  width: 85%;
-  height: auto;
-} */
-
-/* .paginator .wrapPages {
-  gap: 15px;
-  display: flex;
-  justify-content: center;
-  list-style: none;
-} */
-
-/* .advertise {
-  display: flex;
-  justify-content: center;
-  padding-top: 50px;
-  width: 100%;
-  height: 250px;
-} */
-
-/* .advertise .ad {
-  width: 50%;
-  height: 250px;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-image: url("https://www.apple.com/newsroom/images/product/services/lifestyle/Apple-Data-Privacy-Day-hero_big.jpg.slideshow-large.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  cursor: pointer;
-} */
-
-.advertise .ad h1 {
-  color: white;
-  text-transform: capitalize;
-  font-family: "Montserrat";
-  font-weight: 500;
-}
-
-.newArrival {
-  padding-top: 75px;
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-}
-
-.newProduct img {
-  width: 300px;
-  height: 300px;
-  object-fit: contain;
-}
-
 .laptopBrands,
 .phoneBrands {
   position: absolute;
@@ -470,26 +249,6 @@ main {
 
 .visible {
   display: flex;
-}
-
-.regLogin {
-  width: 175px;
-  height: 50px;
-  font-family: "Montserrat", "Sans-Serif";
-  color: #13274f;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  background: #fcfcfc;
-  text-transform: capitalize;
-  transition: ease-out 0.5s;
-  border-radius: 10px;
-}
-
-.regLogin:hover {
-  color: #163572;
-  cursor: pointer;
-  transition: ease-in 0.5s;
 }
 
 .navDropdown {
