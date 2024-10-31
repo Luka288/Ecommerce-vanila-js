@@ -39,9 +39,10 @@ export function buildNavigation() {
   const bg = document.querySelector(".bg");
 
   searchInput.addEventListener("keyup", function () {
-    // searchEngine(this.value);
+    searchEngine(this.value);
 
     if (this.value === "") {
+      searchOptions.innerHTML = "";
       searchOptions.appendChild(empty);
     } else {
       empty.remove();
@@ -167,7 +168,21 @@ async function searchEngine(params) {
       throw new Error("Searching error");
     }
 
+    const ulWrap = document.createElement("ul");
+    ulWrap.classList.add("searchItems");
+
     const parseRes = await res.json();
+
+    parseRes.products.forEach((element) => {
+      const liParent = document.createElement("li");
+
+      liParent.classList.add("searchItemsWrap");
+
+      liParent.textContent = `${element.title}`;
+
+      ulWrap.appendChild(liParent);
+      searchOptions.appendChild(ulWrap);
+    });
 
     console.log(parseRes);
   } catch (error) {}
