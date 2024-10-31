@@ -19,6 +19,11 @@ export function buildNavigation() {
   const searchWrap = document.createElement("form");
   const searchIcon = document.createElement("i");
 
+  // for dropdown search
+  const empty = document.createElement("h1");
+  empty.textContent = "Search Somthing";
+  searchOptions.appendChild(empty);
+
   searchIcon.classList.add("fa-solid", "fa-magnifying-glass", "searchIcon");
 
   searchWrap.addEventListener("submit", function (e) {
@@ -31,21 +36,47 @@ export function buildNavigation() {
     console.log(searchValue);
   });
 
-  const mainContainer = document.querySelector(".mainContainer");
-  const body = document.body;
+  const bg = document.querySelector(".bg");
 
   searchInput.addEventListener("keyup", function () {
-    searchEngine(this.value);
+    // searchEngine(this.value);
+
+    if (this.value === "") {
+      searchOptions.appendChild(empty);
+    } else {
+      empty.remove();
+    }
+  });
+
+  empty.addEventListener("click", function (e) {
+    console.log("test");
+    e.preventDefault();
   });
 
   searchInput.addEventListener("focus", function () {
-    searchOptions.style.display = "flex";
-    body.classList.add("dark-background");
+    searchOptions.style.visibility = "visible";
+    searchOptions.classList.add("animateHeight");
+    bg.classList.add("dark-background");
+    searchOptions.appendChild(empty);
+
+    if (!searchOptions.contains(empty)) {
+      searchOptions.appendChild(empty);
+    }
   });
 
   searchInput.addEventListener("blur", function () {
-    searchOptions.style.display = "none";
-    body.classList.remove("dark-background");
+    searchOptions.style.visibility = "hidden";
+    searchOptions.classList.remove("animateHeight");
+    bg.classList.remove("dark-background");
+
+    if (searchOptions.contains(empty)) {
+      empty.remove();
+    }
+  });
+
+  searchOptions.addEventListener("mousedown", function (e) {
+    e.stopPropagation();
+    e.preventDefault();
   });
 
   let num = 100;
