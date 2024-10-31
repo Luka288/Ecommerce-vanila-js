@@ -1,5 +1,4 @@
 "use strict";
-
 export function buildNavigation() {
   const navigation = document.getElementById("navigation");
 
@@ -8,10 +7,7 @@ export function buildNavigation() {
   const logo = document.createElement("a");
   const ulWrapper = document.createElement("ul");
   const burger = document.createElement("i");
-  const loginBtn = document.createElement("a");
   const registerBtn = document.createElement("a");
-  const loginLi = document.createElement("li");
-  const regLi = document.createElement("li");
 
   const regLogin = document.createElement("ul");
   const wrapInside = document.createElement("li");
@@ -36,7 +32,6 @@ export function buildNavigation() {
   let num = 100;
 
   if (num > 0) {
-    // build logo side
     logo.classList.add("logo");
     logo.textContent = "Shop";
     logo.href = "/";
@@ -46,14 +41,10 @@ export function buildNavigation() {
 
     navigation.appendChild(logoSide);
 
-    // building buttons side
     ulWrapper.classList.add("nav-items");
     burger.classList.add("headerBar", "fa-solid", "fa-bars");
 
     wrapInside.classList.add("wrapInside");
-    // loginBtn.classList.add("nav-item");
-    // loginBtn.textContent = "login";
-    // loginBtn.href = "auth";
 
     regLogin.classList.add("nav-items");
     userIcon.classList.add("fa-regular", "fa-user", "userIcon");

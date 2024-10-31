@@ -62,6 +62,7 @@ function generateCard(item, parent) {
   productCard.classList.add("productCard");
 
   img.src = item.thumbnail;
+  img.alt = item.title;
   if (item.price.discountPercentage) {
     span.textContent = `${item.price.beforeDiscount} ${item.price.currency}`;
     price.textContent = `${item.price.current} ${item.price.currency}`;

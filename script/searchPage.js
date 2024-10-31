@@ -1,10 +1,13 @@
 import { buildNavigation } from "./navbar.js";
 
-buildNavigation();
-
 const title = document.querySelector("title");
 
-getSearchVal();
+init();
+
+function init() {
+  buildNavigation();
+  getSearchVal();
+}
 
 function getSearchVal() {
   const searchValue = new URLSearchParams(window.location.search);
