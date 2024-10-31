@@ -422,7 +422,7 @@ main {
   justify-content: center;
   position: absolute;
   background-color: white;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .searchOptions h1 {
@@ -430,11 +430,26 @@ main {
 }
 
 .searchItems {
+  width: 600px;
   padding-top: 35px;
   list-style: none;
-  display: flex;
-  flex-direction: column;
   gap: 30px;
+}
+
+.searchItemsWrap {
+  display: flex;
+  align-items: center;
+  line-height: 30px;
+  gap: 15px;
+}
+
+.searchItemImg {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.searchItemTitle {
 }
 
 @media (max-width: 768px) {

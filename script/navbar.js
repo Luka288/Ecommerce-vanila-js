@@ -152,7 +152,7 @@ export function buildNavigation() {
 }
 
 async function searchEngine(params) {
-  if (!params || params === " ") {
+  if (!params || params.trim() === "") {
     return;
   }
 
@@ -168,22 +168,34 @@ async function searchEngine(params) {
       throw new Error("Searching error");
     }
 
+    const parseRes = await res.json();
+
+    const filteredItems = parseRes.products.filter((product) =>
+      product.title.toLowerCase().includes(params.toLowerCase())
+    );
+
     const ulWrap = document.createElement("ul");
     ulWrap.classList.add("searchItems");
 
-    const parseRes = await res.json();
+    searchOptions.innerHTML = "";
 
-    parseRes.products.forEach((element) => {
+    filteredItems.forEach((element) => {
       const liParent = document.createElement("li");
+      const itemTitle = document.createElement("p");
+      const img = document.createElement("img");
 
+      itemTitle.classList.add("searchItemTitle");
+      img.classList.add("searchItemImg");
       liParent.classList.add("searchItemsWrap");
 
-      liParent.textContent = `${element.title}`;
+      img.src = element.thumbnail;
+      itemTitle.textContent = `${element.title}`;
 
+      liParent.appendChild(img);
+      liParent.appendChild(itemTitle);
       ulWrap.appendChild(liParent);
-      searchOptions.appendChild(ulWrap);
     });
-
+    searchOptions.appendChild(ulWrap);
     console.log(parseRes);
   } catch (error) {}
 }
