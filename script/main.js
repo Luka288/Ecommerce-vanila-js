@@ -13,7 +13,11 @@ const paginator = document.querySelector(".paginator");
 const activeBrands = document.querySelector(".activeBrands");
 const category = document.querySelector(".category");
 const appleProducts = document.querySelector(".appleProducts");
-const splideUl = document.getElementById("appleSide");
+const appleSide = document.getElementById("appleSide");
+const asusSide = document.getElementById("asusSide");
+const samsungSide = document.getElementById("samsungSide");
+const lenovoSide = document.getElementById("lenovoSide");
+const brandUl = document.querySelector(".brandUl");
 
 let currPage = 1;
 let totalProducts;
@@ -30,8 +34,62 @@ init();
 // https:api.everrest.educata.dev/shop/products/category/2?page_size=10
 
 function init() {
-  // pagination();
   mountSplide();
+  brandService();
+}
+
+function generateCard(item, parent) {
+  const li = document.createElement("li");
+
+  const productCard = document.createElement("div");
+  const imgDiv = document.createElement("div");
+  const img = document.createElement("img");
+  const priceCon = document.createElement("div");
+  const price = document.createElement("p");
+  const titleCon = document.createElement("div");
+  const titleP = document.createElement("p");
+  const buttonCon = document.createElement("div");
+  const btnUl = document.createElement("ul");
+  const btnLi = document.createElement("li");
+  const button = document.createElement("a");
+  const span = document.createElement("span");
+
+  imgDiv.classList.add("productImg");
+  li.classList.add("splide__slide", "bottomSplide");
+  productCard.classList.add("productCard");
+
+  img.src = item.thumbnail;
+  if (item.price.discountPercentage) {
+    span.textContent = `${item.price.beforeDiscount} ${item.price.currency}`;
+    price.textContent = `${item.price.current} ${item.price.currency}`;
+  } else {
+    price.textContent = `${item.price.current} ${item.price.currency}`;
+  }
+
+  priceCon.classList.add("priceContainer");
+  btnLi.classList.add("viewProductLi");
+  btnUl.classList.add("viewProductUl");
+  titleP.classList.add("productTitle");
+  button.classList.add("viewProduct");
+  titleP.textContent = item.title;
+  button.textContent = "View product";
+
+  imgDiv.appendChild(img);
+  productCard.appendChild(imgDiv);
+  if (item.price.discountPercentage) {
+    priceCon.appendChild(span);
+  }
+  priceCon.appendChild(price);
+  productCard.appendChild(priceCon);
+  titleCon.appendChild(titleP);
+  productCard.appendChild(titleCon);
+  btnLi.appendChild(button);
+  btnUl.appendChild(btnLi);
+  buttonCon.appendChild(btnUl);
+  productCard.appendChild(buttonCon);
+
+  li.appendChild(productCard);
+  parent.appendChild(li);
 }
 
 async function getTopic(brand, callback) {
@@ -53,59 +111,73 @@ async function getTopic(brand, callback) {
   } catch (error) {}
 }
 
+async function brandService() {
+  try {
+    const icons = await fetch(
+      "https://api.everrest.educata.dev/shop/products/brands"
+    );
+
+    if (!icons.ok) {
+      throw new Error("Error");
+    }
+
+    const parseIcons = await icons.json();
+
+    parseIcons.forEach((icon) => {
+      iconService(icon);
+    });
+  } catch (error) {}
+}
+
+async function iconService(params) {
+  const icons = [];
+  try {
+    const icon = `https://logo.clearbit.com/${params}.com`;
+    icons.push(icon);
+
+    icons.forEach((item) => {
+      const li = document.createElement("li");
+      const image = document.createElement("img");
+
+      image.src = item;
+
+      image.classList.add("brandIcon");
+      li.classList.add("splide__slide", "controlIcons");
+
+      li.appendChild(image);
+      brandUl.appendChild(li);
+    });
+  } catch (error) {
+    console.log(err);
+  }
+}
+
 getTopic("apple", function (res) {
   res.forEach((item) => {
-    const li = document.createElement("li");
-
-    const productCard = document.createElement("div");
-    const imgDiv = document.createElement("div");
-    const img = document.createElement("img");
-    const priceCon = document.createElement("div");
-    const price = document.createElement("p");
-    const titleCon = document.createElement("div");
-    const titleP = document.createElement("p");
-    const buttonCon = document.createElement("div");
-    const btnUl = document.createElement("ul");
-    const btnLi = document.createElement("li");
-    const button = document.createElement("a");
-    const span = document.createElement("span");
-
-    imgDiv.classList.add("productImg");
-    li.classList.add("splide__slide", "bottomSplide");
-    productCard.classList.add("productCard");
-
-    img.src = item.thumbnail;
-    if (item.price.discountPercentage) {
-      span.textContent = price.beforeDiscount;
-      price.textContent = `${item.price.current} ${item.price.currency}`;
-    } else {
-      price.textContent = `${item.price.current}`;
-    }
-
-    btnLi.classList.add("viewProductLi");
-    btnUl.classList.add("viewProductUl");
-    titleP.classList.add("productTitle");
-    button.classList.add("viewProduct");
-    titleP.textContent = item.title;
-    button.textContent = "View product";
-
-    imgDiv.appendChild(img);
-    productCard.appendChild(imgDiv);
-    if (item.price.discountPercentage) {
-      priceCon.appendChild(span);
-    }
-    priceCon.appendChild(price);
-    productCard.appendChild(priceCon);
-    titleCon.appendChild(titleP);
-    productCard.appendChild(titleCon);
-    btnLi.appendChild(button);
-    btnUl.appendChild(btnLi);
-    buttonCon.appendChild(btnUl);
-    productCard.appendChild(buttonCon);
-
-    li.appendChild(productCard);
-    splideUl.appendChild(li);
+    generateCard(item, appleSide);
   });
+  mountSplide();
+});
+
+getTopic("asus", function (res) {
+  res.forEach((item) => {
+    generateCard(item, asusSide);
+  });
+  mountSplide();
+});
+
+getTopic("samsung", function (res) {
+  res.forEach((item) => {
+    generateCard(item, samsungSide);
+  });
+  mountSplide();
+});
+
+getTopic("lenovo", function (res) {
+  res.forEach((item) => {
+    generateCard(item, lenovoSide);
+  });
+
   mountSplide();
 });
 
@@ -144,44 +216,109 @@ async function loadBrands(categoryID) {
   }
 }
 
-async function pagination() {
-  try {
-    const res = await fetch(
-      `https://api.everrest.educata.dev/shop/products/all?page_index=${currPage}&page_size=10`
-    );
+function mountSplide() {
+  var topSplide = new Splide(".topSplide", {
+    focus: "center",
+    type: "fade",
+    interval: 1000,
+    pagination: false,
+    autoPlay: true,
+    loop: true,
+    rewind: true,
+  });
 
-    if (!res.ok) {
-      throw new Error("Error");
-    }
+  var productSplide = new Splide(".productSplider", {
+    focus: "right",
+    type: "loop",
+    pagination: false,
+    perPage: 4,
+    perMove: 1,
+    breakpoints: {
+      1024: {
+        focus: "center",
+        perPage: 2,
+      },
 
-    const parseRes = await res.json();
+      425: {
+        focus: "left",
+        perPage: 1,
+      },
+    },
+  });
 
-    parseRes.products.forEach((item) => {
-      // productCard(item);
-    });
+  var asusSplider = new Splide(".asusSplider", {
+    focus: "right",
+    type: "loop",
+    pagination: false,
+    perPage: 4,
+    perMove: 1,
+    breakpoints: {
+      1024: {
+        focus: "center",
+        perPage: 2,
+      },
 
-    totalProducts = parseRes.total;
-    pages = Math.ceil(totalProducts / parseRes.limit);
+      425: {
+        focus: "left",
+        perPage: 1,
+      },
+    },
+  });
 
-    const pagesUl = document.createElement("ul");
-    for (let i = 1; i <= pages; i++) {
-      const pageLi = document.createElement("li");
+  var samsungSplider = new Splide(".samsungSplide", {
+    focus: "right",
+    type: "loop",
+    pagination: false,
+    perPage: 4,
+    perMove: 1,
+    breakpoints: {
+      1024: {
+        focus: "center",
+        perPage: 2,
+      },
 
-      pagesUl.classList.add("wrapPages");
-      pageLi.classList.add("paginationPage");
+      425: {
+        focus: "left",
+        perPage: 1,
+      },
+    },
+  });
 
-      pageLi.textContent = i;
-      pageLi.value = i;
+  var lenovoSplider = new Splide(".lenovoSplider", {
+    focus: "right",
+    type: "loop",
+    pagination: false,
+    perPage: 4,
+    perMove: 1,
+    breakpoints: {
+      1024: {
+        focus: "center",
+        perPage: 2,
+      },
 
-      pagesUl.appendChild(pageLi);
-      paginator.appendChild(pagesUl);
-      console.log(i);
-    }
+      425: {
+        focus: "left",
+        perPage: 1,
+      },
+    },
+  });
 
-    console.log(pages);
-  } catch (err) {
-    console.log(err);
-  }
+  var brandSplider = new Splide(".brandsSplider", {
+    type: "loop",
+    drag: "free",
+    focus: "center",
+    perPage: 3,
+    autoScroll: {
+      speed: 1,
+    },
+  });
+
+  brandSplider.mount();
+  lenovoSplider.mount();
+  samsungSplider.mount();
+  asusSplider.mount();
+  productSplide.mount();
+  topSplide.mount();
 }
 
 function brandNames(name, container) {
@@ -306,29 +443,6 @@ function phoneCard(ProductPhone) {
 
   phoneSplide.appendChild(div);
   phonesList.appendChild(phoneSplide);
-}
-
-function mountSplide() {
-  var topSplide = new Splide(".topSplide", {
-    focus: "center",
-    type: "fade",
-    interval: 1000,
-    pagination: false,
-    autoPlay: true,
-    loop: true,
-    rewind: true,
-  });
-
-  var productSplide = new Splide(".productSplider", {
-    focus: "right",
-    type: "loop",
-    pagination: false,
-    perPage: 4,
-    perMove: 1,
-  });
-
-  productSplide.mount();
-  topSplide.mount();
 }
 
 // laptop category
