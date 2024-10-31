@@ -1,8 +1,8 @@
 "use strict";
 
-const navigation = document.getElementById("navigation");
+export function buildNavigation() {
+  const navigation = document.getElementById("navigation");
 
-function buildNavigation() {
   const logoSide = document.createElement("div");
   const buttonSide = document.createElement("div");
   const logo = document.createElement("a");
@@ -108,8 +108,6 @@ function buildNavigation() {
   } else {
   }
 }
-
-buildNavigation();
 
 // sort
 //https://api.everrest.educata.dev/shop/products/search?page_size=2&page_index=1&sort_by=title&sort_direction=asc&price_min=500&price_max=2000

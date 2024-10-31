@@ -1,3 +1,7 @@
+import { buildNavigation } from "./navbar.js";
+
+buildNavigation();
+
 const title = document.querySelector("title");
 
 getSearchVal();

@@ -1,4 +1,6 @@
 "use strict";
+import { buildNavigation } from "./navbar.js";
+
 const arrow = document.querySelectorAll(".arrow");
 const carusel = document.querySelector(".carusel");
 const splideList = document.querySelector(".splide__list");
@@ -34,6 +36,7 @@ init();
 // https:api.everrest.educata.dev/shop/products/category/2?page_size=10
 
 function init() {
+  buildNavigation();
   mountSplide();
   brandService();
 }
