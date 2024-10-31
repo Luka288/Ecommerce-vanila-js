@@ -13,6 +13,7 @@
       src="./node_modules/@splidejs/splide/dist/js/splide.min.js"
       defer
     ></script>
+    <script src="./node_modules/axios/dist/axios.min.js" defer></script>
     <link
       rel="stylesheet"
       href="node_modules/@splidejs/splide/dist/css/splide.min.css"
@@ -29,7 +30,8 @@
   <body>
     <nav id="navigation"></nav>
     <div class="navDropdown"></div>
-    <main>
+    <div class="searchOptions"></div>
+    <main id="mainContainer">
       <section class="top">
         <div class="wrapCategory">
           <div class="category">

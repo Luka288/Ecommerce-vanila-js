@@ -391,6 +391,29 @@ main {
   width: var(--section-width);
 }
 
+.dark-background {
+  position: fixed; /* Covers the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity for darkness */
+  z-index: 100; /* Ensure it sits behind the searchOptions */
+}
+
+.searchOptions{
+  width: 750px;
+  height: 300px;
+  top: 95px;
+  left: 50%;
+  z-index: 200;
+  transform: translateX(-50%);
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 1px 10px 400px 0px rgba(0, 0, 0, 1);
+}
+
 @media (max-width: 768px) {
   .headerBar {
     display: flex;

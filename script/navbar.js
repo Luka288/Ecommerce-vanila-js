@@ -1,4 +1,6 @@
 "use strict";
+const searchOptions = document.querySelector(".searchOptions");
+
 export function buildNavigation() {
   const navigation = document.getElementById("navigation");
 
@@ -27,6 +29,23 @@ export function buildNavigation() {
     }
     window.location = `search.html?search=${encodeURIComponent(searchValue)}`;
     console.log(searchValue);
+  });
+
+  const mainContainer = document.querySelector(".mainContainer");
+  const body = document.body;
+
+  searchInput.addEventListener("keyup", function () {
+    searchEngine(this.value);
+  });
+
+  searchInput.addEventListener("focus", function () {
+    searchOptions.style.display = "flex";
+    body.classList.add("dark-background");
+  });
+
+  searchInput.addEventListener("blur", function () {
+    searchOptions.style.display = "none";
+    body.classList.remove("dark-background");
   });
 
   let num = 100;
@@ -98,6 +117,29 @@ export function buildNavigation() {
     });
   } else {
   }
+}
+
+async function searchEngine(params) {
+  if (!params || params === " ") {
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      `https://api.everrest.educata.dev/shop/products/search?page_size=50&keywords=${params}`,
+      {
+        method: "GET",
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Searching error");
+    }
+
+    const parseRes = await res.json();
+
+    console.log(parseRes);
+  } catch (error) {}
 }
 
 // sort
