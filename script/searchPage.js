@@ -5,6 +5,10 @@ const foundCard = document.querySelector(".foundCard");
 const title = document.querySelector("title");
 let searchWord = "";
 
+let currPage = 1;
+let total;
+let pages;
+
 init();
 
 function init() {
@@ -24,7 +28,7 @@ function getSearchVal() {
 async function loadProducts(searchQuery) {
   try {
     const res = await fetch(
-      `https://api.everrest.educata.dev/shop/products/search?brand=${searchQuery}&page_size=50`
+      `https://api.everrest.educata.dev/shop/products/search?keywords=${searchQuery}&page_size=15`
     );
 
     if (!res.ok) {
@@ -35,11 +39,23 @@ async function loadProducts(searchQuery) {
 
     title.textContent = `Search Results ${searchQuery}`;
 
+    paginator(parseRes);
+
     generateCard(parseRes.products);
     foundItems(parseRes.products);
 
     console.log(parseRes);
   } catch (error) {}
+}
+
+function paginator(res) {
+  currPage = res.page;
+  total = res.total;
+  pages = Math.ceil(total / res.limit);
+
+  for (let i = 1; i <= pages; i++) {
+    console.log(i);
+  }
 }
 
 function generateCard(response) {

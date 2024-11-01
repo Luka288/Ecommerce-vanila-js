@@ -29,6 +29,7 @@ nav {
 .nav-items {
   display: flex;
   align-items: center;
+  cursor: pointer;
   font-family: var(--main-font);
   border-radius: 12px;
   background-color: white;
@@ -49,7 +50,7 @@ nav {
 
 .logoSide {
   /* width: 100%; */
-  padding-left: 10%;
+  padding-left: 5%;
   font-family: var(--main-font);
 }
 
@@ -406,6 +407,8 @@ main {
 .searchOptions.animateHeight {
   height: 300px;
   transition: all 0.5s;
+  position: fixed;
+  z-index: 150;
 }
 
 .searchOptions {
@@ -546,11 +549,15 @@ main {
 
 .foundCounter {
   font-family: var(--secondary-font);
-  text-transform: capitalize;
 }
 
 .searchWord {
   color: var(--main-color);
+}
+
+.paginator {
+  width: 100%;
+  height: 200px;
 }
 
 @media (max-width: 768px) {
