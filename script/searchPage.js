@@ -3,6 +3,7 @@ import { buildResponsiveCategory } from "./category.js";
 const countOfProducts = document.querySelector(".countOfProducts");
 const foundCard = document.querySelector(".foundCard");
 const title = document.querySelector("title");
+const pageWrapper = document.querySelector(".pageWrapper");
 let searchWord = "";
 
 let currPage = 1;
@@ -25,10 +26,10 @@ function getSearchVal() {
   loadProducts(parsedValue);
 }
 
-async function loadProducts(searchQuery) {
+async function loadProducts(searchQuery, page = currPage) {
   try {
     const res = await fetch(
-      `https://api.everrest.educata.dev/shop/products/search?keywords=${searchQuery}&page_size=15`
+      `https://api.everrest.educata.dev/shop/products/search?keywords=${searchQuery}&page_index=${page}&page_size=15`
     );
 
     if (!res.ok) {
@@ -36,6 +37,7 @@ async function loadProducts(searchQuery) {
     }
 
     const parseRes = await res.json();
+    currPage = parseRes.page;
 
     title.textContent = `Search Results ${searchQuery}`;
 
@@ -49,12 +51,31 @@ async function loadProducts(searchQuery) {
 }
 
 function paginator(res) {
+  countOfProducts.innerHTML = "";
+  pageWrapper.innerHTML = "";
+  foundCard.innerHTML = "";
   currPage = res.page;
   total = res.total;
   pages = Math.ceil(total / res.limit);
 
   for (let i = 1; i <= pages; i++) {
-    console.log(i);
+    const lipage = document.createElement("li");
+    lipage.classList.add("lipage");
+
+    lipage.value = i;
+    lipage.textContent = `${i}`;
+
+    if (lipage.value === currPage) {
+      lipage.style.backgroundColor = "var(--main-color)";
+    }
+
+    lipage.addEventListener("click", function () {
+      currPage = lipage.value;
+      console.log(currPage);
+      loadProducts(searchWord, currPage);
+    });
+
+    pageWrapper.appendChild(lipage);
   }
 }
 
