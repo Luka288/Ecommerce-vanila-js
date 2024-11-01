@@ -26,4 +26,10 @@ export function buildResponsiveCategory() {
       });
     }
   });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth >= 768) {
+      slideCategory.classList.remove("activeCategory");
+    }
+  });
 }

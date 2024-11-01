@@ -1,4 +1,5 @@
 import { buildNavigation } from "./navbar.js";
+import { buildResponsiveCategory } from "./category.js";
 
 const title = document.querySelector("title");
 
@@ -7,6 +8,7 @@ init();
 function init() {
   buildNavigation();
   getSearchVal();
+  buildResponsiveCategory();
 }
 
 function getSearchVal() {
