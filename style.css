@@ -6,7 +6,8 @@
   --section-width: 69%;
 }
 
-body {
+body,
+html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -98,6 +99,7 @@ nav {
 }
 
 main {
+  width: 100%;
   height: 100%;
   z-index: 200;
   padding-top: 95px;
@@ -505,6 +507,50 @@ main {
   font-family: var(--main-font);
   text-transform: capitalize;
   color: #151e3d;
+}
+
+.foundItems {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.countOfProducts {
+  width: 75%;
+}
+
+.items {
+  width: 75%;
+  height: 500px;
+}
+
+.foundCard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.searchedItem {
+  width: 200px;
+  height: auto;
+}
+
+.searchedItem img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.foundCounter {
+  font-family: var(--secondary-font);
+  text-transform: capitalize;
+}
+
+.searchWord {
+  color: var(--main-color);
 }
 
 @media (max-width: 768px) {
