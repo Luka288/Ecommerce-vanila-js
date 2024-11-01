@@ -19,6 +19,8 @@ export function buildNavigation() {
   const searchWrap = document.createElement("form");
   const searchIcon = document.createElement("i");
 
+  let checkSearch = false;
+
   // for dropdown search
   const empty = document.createElement("h1");
   empty.textContent = "Search Somthing";
@@ -41,6 +43,12 @@ export function buildNavigation() {
   searchInput.addEventListener("keyup", function () {
     searchEngine(this.value);
 
+    if (checkSearch) {
+      empty.remove();
+    } else {
+      searchOptions.appendChild(empty);
+    }
+
     if (this.value === "") {
       searchOptions.innerHTML = "";
       searchOptions.appendChild(empty);
@@ -55,6 +63,12 @@ export function buildNavigation() {
   });
 
   searchInput.addEventListener("focus", function () {
+    searchOptions.innerHTML = "";
+
+    if (searchInput.value) {
+      searchEngine(this.value);
+    }
+
     searchOptions.style.visibility = "visible";
     searchOptions.classList.add("animateHeight");
     bg.classList.add("dark-background");
@@ -196,6 +210,7 @@ async function searchEngine(params) {
       ulWrap.appendChild(liParent);
     });
     searchOptions.appendChild(ulWrap);
+    checkSearch = true;
     console.log(parseRes);
   } catch (error) {}
 }

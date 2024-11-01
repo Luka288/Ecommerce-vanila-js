@@ -1,5 +1,6 @@
 "use strict";
 import { buildNavigation } from "./navbar.js";
+import { buildResponsiveCategory } from "./category.js";
 
 const arrow = document.querySelectorAll(".arrow");
 const carusel = document.querySelector(".carusel");
@@ -39,6 +40,7 @@ function init() {
   buildNavigation();
   mountSplide();
   brandService();
+  buildResponsiveCategory();
 }
 
 function generateCard(item, parent) {
@@ -127,10 +129,20 @@ async function brandService() {
 
     const parseIcons = await icons.json();
 
-    parseIcons.forEach((icon) => {
-      iconService(icon);
+    const storage = localStorage.getItem("brandName");
+
+    parseIcons.forEach((brand) => {
+      if (!storage) {
+        saveTolocal(brand);
+      }
+      iconService(brand);
     });
   } catch (error) {}
+}
+
+function saveTolocal(param) {
+  const storage = JSON.parse(localStorage.getItem("brandName")) || [];
+  localStorage.setItem("brandName", JSON.stringify([...storage, param]));
 }
 
 async function iconService(params) {

@@ -254,7 +254,7 @@ main {
 .navDropdown {
   width: 100%;
   height: 0px;
-  z-index: 99;
+  z-index: 1120;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -431,6 +431,7 @@ main {
 
 .searchItems {
   width: 600px;
+  height: 300px;
   padding-top: 35px;
   list-style: none;
   gap: 30px;
@@ -449,7 +450,61 @@ main {
   object-fit: contain;
 }
 
-.searchItemTitle {
+.responsiveCategory {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  position: relative;
+  box-shadow: 12px 0px 19px -1px rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: 12px 0px 19px -1px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 12px 0px 19px -1px rgba(0, 0, 0, 0.22);
+  width: 50px;
+  height: 50px;
+  border-radius: 360px;
+}
+
+.slideCategory {
+  width: 250px;
+  height: auto;
+  z-index: 199;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  visibility: hidden;
+  position: absolute;
+  transform: translateX(-100%);
+  transition: all 0.3s;
+  box-shadow: 12px 0px 19px -1px rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: 12px 0px 19px -1px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 12px 0px 19px -1px rgba(0, 0, 0, 0.22);
+}
+
+.slideCategory h1 {
+  font-family: var(--main-font);
+  font-weight: 300;
+}
+
+.activeCategory {
+  transform: translateX(0);
+  height: auto;
+  visibility: visible;
+  transition: all 0.3s;
+}
+
+.wrapResponsiveCategory {
+  position: fixed;
+  z-index: 450;
+}
+
+.responsiveCategoryA {
+  font-size: 20px;
+  font-family: var(--main-font);
+  text-transform: capitalize;
+  color: #151e3d;
 }
 
 @media (max-width: 768px) {
@@ -470,5 +525,55 @@ main {
     height: 100%;
     top: -100vh;
     transition: all 0.5s;
+  }
+
+  .searchBar {
+    width: 300px;
+  }
+
+  .logoSide {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 425px) {
+  .searchBar {
+    width: 150px;
+    padding-left: 25%;
+  }
+
+  .searchOptions {
+    width: auto;
+  }
+
+  .searchOptions h1 {
+    font-size: 15px;
+  }
+
+  .searchItems {
+    width: 300px;
+  }
+
+  .searchOptions.animateHeight {
+    width: 350px;
+  }
+
+  .category {
+    display: none;
+  }
+
+  .responsiveCategory {
+    display: flex;
+  }
+}
+
+@media (max-width: 320px) {
+  .searchBar {
+    width: 100px;
+    padding-left: 35%;
+  }
+
+  .searchOptions.animateHeight {
+    width: 300px;
   }
 }
