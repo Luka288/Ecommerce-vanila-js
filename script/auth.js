@@ -40,9 +40,8 @@ async function signIn(userInfo) {
       parsedInfo.refresh_token
     );
 
-    console.log(refresh_token);
-    console.log(access_token);
-    console.log(parsedInfo);
+    window.location.reload();
+    window.location.href = "/";
   } catch (error) {
     console.log(error);
   }

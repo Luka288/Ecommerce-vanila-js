@@ -23,7 +23,7 @@ export function buildNavigation() {
 
   // for dropdown search
   const empty = document.createElement("h1");
-  empty.textContent = "Search Somthing";
+  empty.textContent = "Search Something";
   searchOptions.appendChild(empty);
 
   searchIcon.classList.add("fa-solid", "fa-magnifying-glass", "searchIcon");
@@ -170,6 +170,8 @@ export function buildNavigation() {
 
     logOut.addEventListener("click", function () {
       localStorage.removeItem("refresh_token", "access_token");
+      window.location.reload();
+      window.location.href = "/";
     });
   } else {
     logo.classList.add("logo");
