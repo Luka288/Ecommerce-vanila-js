@@ -637,6 +637,7 @@ main {
   position: relative;
   width: 300px;
 }
+
 .passwordContainer input {
   width: 300px;
   height: 30px;
@@ -664,6 +665,10 @@ main {
 .wrapNavA {
   display: flex;
   gap: 30px;
+}
+
+.wrapLis i {
+  color: black;
 }
 
 @media (max-width: 768px) {

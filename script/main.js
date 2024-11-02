@@ -79,6 +79,7 @@ function generateCard(item, parent) {
   button.classList.add("viewProduct");
   titleP.textContent = item.title;
   button.textContent = "View product";
+  button.setAttribute("product-id", item._id);
 
   imgDiv.appendChild(img);
   productCard.appendChild(imgDiv);
@@ -96,6 +97,11 @@ function generateCard(item, parent) {
 
   li.appendChild(productCard);
   parent.appendChild(li);
+
+  button.addEventListener("click", function () {
+    const _id = button.getAttribute("product-id");
+    window.location.href = `/product.html?product_id=${_id}`;
+  });
 }
 
 async function getTopic(brand, callback) {
