@@ -94,9 +94,84 @@ export function buildNavigation() {
     e.preventDefault();
   });
 
-  let num = 100;
+  const refresh_token = localStorage.getItem("refresh_token");
+  const access_token = localStorage.getItem("access_token");
 
-  if (num > 0) {
+  if (refresh_token && access_token) {
+    const buttonsUl = document.createElement("ul");
+    const profileLi = document.createElement("li");
+    const profileIcon = document.createElement("i");
+    const profileT = document.createElement("a");
+    const logOut = document.createElement("li");
+    const logutA = document.createElement("a");
+
+    logo.classList.add("logo");
+    logo.textContent = "Shop";
+    logo.href = "/";
+
+    profileLi.classList.add("nav-items", "profile", "wrapLis");
+    profileIcon.classList.add("fa-solid", "fa-user");
+    logOut.classList.add("nav-items", "wrapLis");
+
+    profileT.textContent = "Profile";
+    logutA.textContent = "log out";
+
+    logoSide.classList.add("logoSide");
+    logoSide.appendChild(logo);
+
+    navigation.appendChild(logoSide);
+
+    burger.classList.add("headerBar", "fa-solid", "fa-bars");
+    buttonsUl.classList.add("wrapNavA");
+    searchWrap.classList.add("wrapSearch");
+    searchInput.classList.add("searchBar");
+
+    searchWrap.appendChild(searchIcon);
+    searchWrap.appendChild(searchInput);
+    navigation.appendChild(searchWrap);
+
+    profileLi.appendChild(profileIcon);
+    profileLi.appendChild(profileT);
+
+    logOut.appendChild(logutA);
+    buttonsUl.appendChild(logOut);
+    buttonsUl.appendChild(profileLi);
+    navigation.appendChild(buttonsUl);
+
+    buttonsUl.appendChild(burger);
+
+    const burgerBar = document.querySelector(".headerBar");
+    const navDropDown = document.querySelector(".navDropdown");
+
+    const dropDonwButtons = document.createElement("div");
+    const dropDwonLogin = document.createElement("a");
+
+    dropDonwButtons.classList.add("dropButtons");
+    dropDwonLogin.textContent = authText.textContent;
+
+    dropDonwButtons.appendChild(dropDwonLogin);
+    navDropDown.appendChild(dropDonwButtons);
+
+    burgerBar.addEventListener("click", function () {
+      navDropDown.classList.toggle("active");
+      if (burgerBar.classList.contains("fa-bars")) {
+        burgerBar.classList.replace("fa-bars", "fa-x");
+      } else {
+        burgerBar.classList.replace("fa-x", "fa-bars");
+      }
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 768) {
+        navDropDown.classList.remove("active");
+        burgerBar.classList.replace("fa-x", "fa-bars");
+      }
+    });
+
+    logOut.addEventListener("click", function () {
+      localStorage.removeItem("refresh_token", "access_token");
+    });
+  } else {
     logo.classList.add("logo");
     logo.textContent = "Shop";
     logo.href = "/";
@@ -109,16 +184,16 @@ export function buildNavigation() {
     ulWrapper.classList.add("nav-items");
     burger.classList.add("headerBar", "fa-solid", "fa-bars");
 
-    wrapInside.classList.add("wrapInside");
+    wrapInside.classList.add("wrapInside", "authPage");
 
     regLogin.classList.add("nav-items");
     userIcon.classList.add("fa-regular", "fa-user", "userIcon");
     authText.textContent = "Login";
     authText.classList.add("nav-item");
 
-    registerBtn.classList.add("nav-item");
-    registerBtn.textContent = "register";
-    registerBtn.href = "auth";
+    wrapInside.addEventListener("click", function () {
+      window.location.href = "auth.html";
+    });
 
     searchWrap.classList.add("wrapSearch");
     searchInput.classList.add("searchBar");
@@ -161,7 +236,6 @@ export function buildNavigation() {
         burgerBar.classList.replace("fa-x", "fa-bars");
       }
     });
-  } else {
   }
 }
 
