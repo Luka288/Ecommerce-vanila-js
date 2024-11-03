@@ -2,6 +2,14 @@ import { buildNavigation } from "./navbar.js";
 
 const thumbnails = document.getElementById("thumbnails");
 const mainPhotos = document.querySelector(".mainPhotos");
+const purchaseContainer = document.querySelector(".purchaseContainer");
+const stockP = document.querySelector(".stockP");
+const stockSpan = document.querySelector(".count");
+const ratingP = document.querySelector(".ratingP");
+const ratingSpan = document.querySelector(".ratingSpan");
+const installmentH1 = document.querySelector(".installmentH1");
+const purchaseBtn = document.querySelector(".purchaseBtn");
+const priceSide = document.querySelector(".priceSide");
 
 init();
 
@@ -36,12 +44,34 @@ async function specificProd(_id) {
     // test.src = parseItem.thumbnail;
 
     buildSplide(parseItem);
+    buildStatic(parseItem);
     console.log(parseItem);
 
     // console.log(parseItem);
   } catch (error) {
     console.log(error);
   }
+}
+
+function buildStatic(res) {
+  if (res.price.discountPercentage) {
+    const discountSpan = document.createElement("span");
+    const currentPrice = document.createElement("h1");
+
+    discountSpan.classList.add("discountSpan");
+
+    discountSpan.textContent = `${res.price.beforeDiscount} ${res.price.currency}`;
+    currentPrice.textContent = `${res.price.current} ${res.price.currency}`;
+    priceSide.appendChild(discountSpan);
+    priceSide.appendChild(currentPrice);
+  } else {
+    const currentPrice = document.createElement("h1");
+    currentPrice.textContent = `${res.price.current} ${res.price.currency}`;
+    priceSide.appendChild(currentPrice);
+  }
+
+  stockSpan.textContent = res.stock;
+  ratingSpan.textContent = res.rating;
 }
 
 function buildSplide(response) {

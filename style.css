@@ -1,5 +1,6 @@
 :root {
   --main-color: #ff5a36;
+  --sale-color: #e3242b;
   --product-card-font-size: 12px;
   --main-font: "Roboto", Sans-Serif;
   --secondary-font: "Montserrat", Sans-Serif;
@@ -407,7 +408,7 @@ main {
 
 .priceContainer span {
   font-family: var(--secondary-font);
-  color: #e3242b;
+  color: var(--sale-color);
   text-decoration-line: line-through;
 }
 
@@ -733,6 +734,8 @@ main {
   width: 100%;
   height: auto;
   display: flex;
+  align-items: center;
+  gap: 30px;
   justify-content: center;
   font-family: var(--main-font);
 }
@@ -808,6 +811,21 @@ main {
 
 .purchaseWrap h1 {
   font-weight: 350;
+}
+
+.discountSpan {
+  text-decoration: line-through;
+  color: var(--sale-color);
+}
+
+.information {
+  display: flex;
+  justify-content: center;
+}
+
+.wrapInfo {
+  width: 75%;
+  height: 300px;
 }
 
 @media (max-width: 768px) {
