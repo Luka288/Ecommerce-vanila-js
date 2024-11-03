@@ -251,7 +251,7 @@ function mountSplide() {
 
   var productSplide = new Splide(".productSplider", {
     focus: "right",
-    type: "loop",
+    // type: "loop",
     pagination: false,
     perPage: 4,
     perMove: 1,
@@ -270,7 +270,7 @@ function mountSplide() {
 
   var asusSplider = new Splide(".asusSplider", {
     focus: "right",
-    type: "loop",
+    // type: "loop",
     pagination: false,
     perPage: 4,
     perMove: 1,
@@ -289,7 +289,7 @@ function mountSplide() {
 
   var samsungSplider = new Splide(".samsungSplide", {
     focus: "right",
-    type: "loop",
+    // type: "loop",
     pagination: false,
     perPage: 4,
     perMove: 1,
@@ -308,7 +308,7 @@ function mountSplide() {
 
   var lenovoSplider = new Splide(".lenovoSplider", {
     focus: "right",
-    type: "loop",
+    // type: "loop",
     pagination: false,
     perPage: 4,
     perMove: 1,
@@ -326,7 +326,7 @@ function mountSplide() {
   });
 
   var brandSplider = new Splide(".brandsSplider", {
-    type: "loop",
+    // type: "loop",
     drag: "free",
     focus: "center",
     perPage: 3,

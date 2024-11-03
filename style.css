@@ -671,6 +671,46 @@ main {
   color: black;
 }
 
+.thumbnails {
+  display: flex;
+  margin: 1rem auto 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.thumbnail {
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  list-style: none;
+  margin: 0 0.2rem;
+  cursor: pointer;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: auto;
+}
+
+#main-carousel {
+  width: 500px;
+  height: auto;
+}
+
+.productImageSide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainPhotos img {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+}
+
 @media (max-width: 768px) {
   .headerBar {
     display: flex;
