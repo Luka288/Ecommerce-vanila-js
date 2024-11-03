@@ -34,16 +34,28 @@ async function specificProd(_id) {
     const parseItem = await itemResponse.json();
 
     // test.src = parseItem.thumbnail;
-    buildSplide(parseItem.images);
 
+    buildSplide(parseItem);
     console.log(parseItem);
+
+    // console.log(parseItem);
   } catch (error) {
     console.log(error);
   }
 }
 
 function buildSplide(response) {
-  response.forEach((element) => {
+  if (response.images.length === 0) {
+    const mainImgCon = document.createElement("li");
+    const mainImg = document.createElement("img");
+
+    mainImg.src = response.thumbnail;
+    console.log(response);
+    mainImgCon.appendChild(mainImg);
+    mainPhotos.appendChild(mainImgCon);
+  }
+
+  response.images.forEach((element) => {
     const thumbnail = document.createElement("li");
     const thumImage = document.createElement("img");
 
@@ -54,7 +66,7 @@ function buildSplide(response) {
     thumbnails.appendChild(thumbnail);
   });
 
-  response.forEach((item) => {
+  response.images.forEach((item) => {
     const mainImgCon = document.createElement("li");
     const mainImg = document.createElement("img");
 
