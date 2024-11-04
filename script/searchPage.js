@@ -164,5 +164,3 @@ function foundItems(items) {
 
   countOfProducts.appendChild(textForLength);
 }
-
-// example search https://api.everrest.educata.dev/shop/products/search?brand=apple&page_size=1

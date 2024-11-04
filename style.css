@@ -901,6 +901,21 @@ main {
   margin-top: 5%; /* Additional margin if needed */
 }
 
+.description {
+  width: 50%;
+  font-family: var(--main-font);
+}
+
+.description p {
+  font-size: 20px;
+}
+
+.basicInfo {
+  font-family: var(--main-font);
+  font-size: 20px;
+  height: 200px;
+}
+
 @media (max-width: 425px) {
   .searchBar {
     width: 150px;

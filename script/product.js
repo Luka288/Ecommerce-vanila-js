@@ -10,6 +10,10 @@ const ratingSpan = document.querySelector(".ratingSpan");
 const installmentH1 = document.querySelector(".installmentH1");
 const purchaseBtn = document.querySelector(".purchaseBtn");
 const priceSide = document.querySelector(".priceSide");
+const issueDate = document.querySelector(".issueDate");
+const brandP = document.querySelector(".brandP");
+const categoryP = document.querySelector(".categoryP");
+const descP = document.querySelector(".descP");
 
 init();
 
@@ -43,6 +47,7 @@ async function specificProd(_id) {
 
     // test.src = parseItem.thumbnail;
 
+    buildDescription(parseItem);
     buildSplide(parseItem);
     buildStatic(parseItem);
     console.log(parseItem);
@@ -51,6 +56,19 @@ async function specificProd(_id) {
   } catch (error) {
     console.log(error);
   }
+}
+
+function buildDescription(item) {
+  const unfromatedDate = item.issueDate;
+
+  const date = new Date(unfromatedDate);
+
+  const formatedDate = date.toLocaleDateString();
+
+  issueDate.textContent = `Issue date : ${formatedDate}`;
+  brandP.textContent = `Brand : ${item.brand}`;
+  categoryP.textContent = `category :  ${item.category.name}`;
+  descP.textContent = `Description : ${item.description}`;
 }
 
 function buildStatic(res) {
