@@ -3,7 +3,6 @@ import {
   emailRegex,
   lastNameRegex,
   passwordRegex,
-  // phoneRegex,
   usernameRegex,
 } from "./regex.js";
 
@@ -29,6 +28,18 @@ const female = document.getElementById("female");
 const signUpBtn = document.getElementById("signUpBtn");
 const signUpCon = document.querySelector(".signUp");
 const errorText = document.querySelectorAll(".error-text");
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-right",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  },
+});
 
 init();
 
@@ -144,6 +155,10 @@ async function signUp(user) {
     const pareseRegister = await registerResponse.json();
 
     if (pareseRegister) {
+      Toast.fire({
+        icon: "success",
+        title: "Login successful",
+      });
       signUpForm.reset();
     }
   } catch (error) {
