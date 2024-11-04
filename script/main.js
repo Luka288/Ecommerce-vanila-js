@@ -1,6 +1,7 @@
 "use strict";
 import { buildNavigation } from "./navbar.js";
 import { buildResponsiveCategory } from "./category.js";
+import { guard } from "./routes.js";
 
 const arrow = document.querySelectorAll(".arrow");
 const carusel = document.querySelector(".carusel");
@@ -41,6 +42,7 @@ function init() {
   mountSplide();
   brandService();
   buildResponsiveCategory();
+  guard();
 }
 
 function generateCard(item, parent) {

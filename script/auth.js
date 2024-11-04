@@ -1,4 +1,5 @@
 import { buildNavigation } from "./navbar.js";
+import { guard } from "./routes.js";
 import {
   emailRegex,
   lastNameRegex,
@@ -45,6 +46,7 @@ init();
 
 function init() {
   buildNavigation();
+  guard();
 }
 
 function formValidation() {

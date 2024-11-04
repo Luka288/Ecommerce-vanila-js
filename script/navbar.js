@@ -169,7 +169,8 @@ export function buildNavigation() {
     });
 
     logOut.addEventListener("click", function () {
-      localStorage.removeItem("refresh_token", "access_token");
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
       window.location.reload();
       window.location.href = "/";
     });
