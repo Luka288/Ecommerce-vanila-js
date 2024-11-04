@@ -75,6 +75,19 @@ function formValidation() {
     authErrors.zipcode = "Enter Zipcode";
   }
 
+  let gender = null;
+
+  document.querySelectorAll('[name="gender"]').forEach((item) => {
+    if (item.checked) {
+      gender = item.value; // Use item.value to get the value of the selected radio
+      console.log(gender);
+    }
+  });
+
+  if (!gender) {
+    authErrors.gender = "Please select a gender";
+  }
+
   for (let key in authErrors) {
     let errorText = document.getElementById("error-" + key);
 
@@ -95,8 +108,8 @@ function formValidation() {
       phone: phone.value,
       age: age.value,
       address: address.value,
-      zipCode: zipCode.value,
-      gender: male.checked ? "male" : female.checked ? "female" : null,
+      zipcode: zipCode.value.toString(),
+      gender: gender,
       avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=",
     };
 
@@ -132,7 +145,7 @@ async function signUp(user) {
 
     console.log(pareseRegister);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }
 
