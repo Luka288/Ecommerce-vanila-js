@@ -3,7 +3,7 @@ import {
   emailRegex,
   lastNameRegex,
   passwordRegex,
-  phoneRegex,
+  // phoneRegex,
   usernameRegex,
 } from "./regex.js";
 
@@ -28,6 +28,7 @@ const male = document.getElementById("male");
 const female = document.getElementById("female");
 const signUpBtn = document.getElementById("signUpBtn");
 const signUpCon = document.querySelector(".signUp");
+const errorText = document.querySelectorAll(".error-text");
 
 init();
 
@@ -37,6 +38,10 @@ function init() {
 
 function formValidation() {
   const authErrors = {};
+
+  errorText.forEach((text) => {
+    text.textContent = "";
+  });
 
   if (!firstName.value.match(usernameRegex)) {
     authErrors.username = "Username is not valid";
@@ -54,8 +59,8 @@ function formValidation() {
     authErrors.password = "invalid password";
   }
 
-  if (!phone.value.match(phoneRegex)) {
-    authErrors.phone = "invalid phone number";
+  if (phone.value === "") {
+    authErrors.phone = "enter phone number";
   }
 
   if (age.value < 18) {
@@ -71,20 +76,47 @@ function formValidation() {
   }
 
   for (let key in authErrors) {
-    let errorMsg = document.getElementById("error" + key);
+    let errorText = document.getElementById("error-" + key);
 
-    console.log(errorMsg);
-
-    if (errorMsg) {
-      errorMsg.textContent = authErrors[key];
+    if (errorText) {
+      errorText.textContent = authErrors[key];
+      errorText.style.color = "red";
     }
+
+    console.log(authErrors);
   }
 
-  console.log(authErrors);
+  if (Object.keys(authErrors).length === 0) {
+    const createUser = {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      password: password.value,
+      phone: phone.value,
+      age: age.value,
+      address: address.value,
+      zipCode: zipCode.value,
+      gender: male.checked ? "male" : female.checked ? "female" : null,
+      avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=",
+    };
+
+    console.log(createUser.zipCode);
+
+    signUp(createUser);
+  }
 }
+
+signUpForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  formValidation();
+});
 
 async function signUp(user) {
   try {
+    console.log(
+      "User data being sent to the server:",
+      JSON.stringify(user, null, 2)
+    );
     const registerResponse = await fetch(
       "https://api.everrest.educata.dev/auth/sign_up",
       {
@@ -92,10 +124,16 @@ async function signUp(user) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userRegister),
+        body: JSON.stringify(user),
       }
     );
-  } catch (error) {}
+
+    const pareseRegister = await registerResponse.json();
+
+    console.log(pareseRegister);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function signIn(userInfo) {
@@ -171,9 +209,4 @@ toggleLogin.addEventListener("click", function (e) {
   e.preventDefault();
   signUpCon.style.display = "none";
   login.style.display = "block";
-});
-
-signUpForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  formValidation();
 });

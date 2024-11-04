@@ -828,7 +828,7 @@ main {
   height: 300px;
 }
 
-.toggleLogin{
+.toggleLogin {
   font-size: 20px;
   font-family: var(--main-font);
   text-decoration: underline;
@@ -863,7 +863,7 @@ main {
   }
 }
 
-.authCont{
+.authCont {
   max-width: 100%;
   height: 100%;
   display: flex;
@@ -871,13 +871,18 @@ main {
   align-items: center;
 }
 
-.wrapForms{
+.wrapForms {
   max-width: 400px;
   display: flex;
 }
 
-.signUp{
+.signUp {
   display: none;
+}
+
+.error-text {
+  line-height: 10px;
+  border: none;
 }
 
 @media (max-width: 425px) {
