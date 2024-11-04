@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@splidejs/splide": "^4.1.4",
-    "axios": "^1.7.7"
+    "axios": "^1.7.7",
+    "sweetalert2": "^11.14.5"
   },
   "homepage": "https://Luka288.github.io/Ecommerce-vanila-js"
 }

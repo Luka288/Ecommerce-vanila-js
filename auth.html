@@ -32,19 +32,73 @@
         </div>
       </div>
       <div class="bg"></div>
-      <section class="login">
-        <form action="" id="signInForm">
-          <div class="emailContainer inputCon">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" />
-          </div>
-          <div class="passwordContainer inputCon">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" />
-            <i class="fa-solid fa-eye-slash showHide"></i>
-          </div>
-          <button type="submit" id="signIn">Sign In</button>
-        </form>
+      <section class="authCont">
+        <section class="wrapForms">
+          <section class="login">
+            <form action="" id="signInForm">
+              <div class="emailContainer inputCon">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" />
+              </div>
+              <div class="passwordContainer inputCon">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" />
+                <i class="fa-solid fa-eye showHide"></i>
+              </div>
+              <button type="submit" id="signIn">Sign In</button>
+              <a class="toggleCreate">Dont have an account?</a>
+            </form>
+          </section>
+          <section class="signUp">
+            <h1>Register</h1>
+            <form action="" id="signUpForm">
+              <div class="usernameCon inputCon">
+                <label for="firstName">First name</label>
+                <input type="text" name="firstName" id="firstName" />
+              </div>
+              <div class="lastName inputCon">
+                <label for="lastName">last name</label>
+                <input type="text" name="lastName" id="lastName" />
+              </div>
+              <div class="emailCon inputCon">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="emailAuth" />
+              </div>
+              <div class="passwordCon inputCon">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="passwordAuth" />
+              </div>
+              <div class="phoneCon inputCon">
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" id="phone" />
+              </div>
+              <div class="ageCon inputCon">
+                <label for="age">Age</label>
+                <input type="text" name="age" id="age" />
+              </div>
+              <div class="adressCon inputCon">
+                <label for="address">City</label>
+                <input type="text" name="address" id="address" />
+              </div>
+              <div class="zipCon inputCon">
+                <label for="zipcode">Zipcode</label>
+                <input type="text" name="zipcode" id="zipcode" />
+              </div>
+              <div class="gnederCon">
+                <div class="maleCon">
+                  <label for="male">Male</label>
+                  <input type="radio" name="male" id="male" />
+                </div>
+                <div class="femaleCon">
+                  <label for="female ">Female</label>
+                  <input type="radio" name="female" id="female" />
+                </div>
+              </div>
+              <a class="toggleLogin">Have an account?</a>
+              <button type="submit" id="signUpBtn">Register</button>
+            </form>
+          </section>
+        </section>
       </section>
     </main>
   </body>
