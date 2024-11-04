@@ -1,5 +1,11 @@
 import { buildNavigation } from "./navbar.js";
-import { usernameRegex } from "./regex.js";
+import {
+  emailRegex,
+  lastNameRegex,
+  passwordRegex,
+  phoneRegex,
+  usernameRegex,
+} from "./regex.js";
 
 const signInBtn = document.getElementById("signIn");
 const signUpForm = document.getElementById("signUpForm");
@@ -30,13 +36,51 @@ function init() {
 }
 
 function formValidation() {
-  const errorMsg = document.createElement("p");
-
   const authErrors = {};
 
-  if (firstName.value !== usernameRegex) {
-    console.log("error");
+  if (!firstName.value.match(usernameRegex)) {
+    authErrors.username = "Username is not valid";
   }
+
+  if (!lastName.value.match(lastNameRegex)) {
+    authErrors.lastName = "Last name is not valid";
+  }
+
+  if (!email.value.match(emailRegex)) {
+    authErrors.email = "enter valid email";
+  }
+
+  if (!password.value.match(passwordRegex)) {
+    authErrors.password = "invalid password";
+  }
+
+  if (!phone.value.match(phoneRegex)) {
+    authErrors.phone = "invalid phone number";
+  }
+
+  if (age.value < 18) {
+    authErrors.age = "You must be over 18";
+  }
+
+  if (address.value === "") {
+    authErrors.address = "Enter Address";
+  }
+
+  if (zipCode.value === "") {
+    authErrors.zipcode = "Enter Zipcode";
+  }
+
+  for (let key in authErrors) {
+    let errorMsg = document.getElementById("error" + key);
+
+    console.log(errorMsg);
+
+    if (errorMsg) {
+      errorMsg.textContent = authErrors[key];
+    }
+  }
+
+  console.log(authErrors);
 }
 
 async function signUp(user) {
