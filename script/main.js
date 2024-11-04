@@ -348,7 +348,12 @@ function mountSplide() {
 function brandNames(name, container) {
   const nameA = document.createElement("a");
   nameA.textContent = name;
+
   container.appendChild(nameA);
+
+  nameA.addEventListener("click", function () {
+    window.location.href = `/search.html?search=${nameA.textContent}`;
+  });
 }
 
 // laptop category

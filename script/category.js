@@ -1,4 +1,5 @@
 export function buildResponsiveCategory() {
+  const whereTohide = ["/auth.html", "/profile.html"];
   const responsiveCategory = document.querySelector(".responsiveCategory");
   const slideCategory = document.querySelector(".slideCategory");
   let checkIfLoaded = false;
@@ -21,11 +22,15 @@ export function buildResponsiveCategory() {
         slideCategory.appendChild(a);
 
         a.addEventListener("click", function () {
-          console.log(a.innerText);
+          window.location.href = `/search.html?search=${a.textContent}`;
         });
       });
     }
   });
+
+  if (whereTohide.includes(window.location.pathname)) {
+    responsiveCategory.style.display = "none";
+  }
 
   window.addEventListener("resize", function () {
     if (window.innerWidth >= 768) {

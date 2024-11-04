@@ -1,5 +1,6 @@
 import { buildNavigation } from "./navbar.js";
 import { buildResponsiveCategory } from "./category.js";
+
 const countOfProducts = document.querySelector(".countOfProducts");
 const foundCard = document.querySelector(".foundCard");
 const title = document.querySelector("title");

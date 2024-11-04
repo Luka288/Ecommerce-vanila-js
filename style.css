@@ -861,6 +861,14 @@ main {
   .logoSide {
     padding-left: 0;
   }
+
+  .category {
+    display: none;
+  }
+
+  .responsiveCategory {
+    display: flex;
+  }
 }
 
 .authCont {
@@ -911,14 +919,6 @@ main {
 
   .searchOptions.animateHeight {
     width: 350px;
-  }
-
-  .category {
-    display: none;
-  }
-
-  .responsiveCategory {
-    display: flex;
   }
 }
 
