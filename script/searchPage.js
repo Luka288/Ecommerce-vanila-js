@@ -90,6 +90,17 @@ function generateCard(response) {
     const productT = document.createElement("p");
     const saleSpan = document.createElement("span");
 
+    const viewProduct = document.createElement("div");
+    const viewProductUl = document.createElement("ul");
+    const viewProductLi = document.createElement("li");
+    const viewProductA = document.createElement("a");
+
+    viewProductUl.classList.add("viewProductUl", "searchPageUl");
+    viewProductLi.classList.add("viewProductLi", "searchPageLi");
+    viewProductA.classList.add("viewProduct", "searchPageA");
+
+    viewProductA.textContent = "View product";
+
     productCard.classList.add("searchedItem");
     imageContainer.classList.add("productImg");
     priceContainer.classList.add("priceContainer");
@@ -113,11 +124,23 @@ function generateCard(response) {
     imageContainer.appendChild(image);
     titleContainer.appendChild(productT);
 
+    viewProductLi.appendChild(viewProductA);
+    viewProductUl.appendChild(viewProductLi);
+    viewProduct.appendChild(viewProductUl);
     productCard.appendChild(imageContainer);
     productCard.appendChild(titleContainer);
     productCard.appendChild(priceContainer);
+    productCard.appendChild(viewProduct);
 
     foundCard.appendChild(productCard);
+
+    viewProductA.setAttribute("product-id", element._id);
+
+    viewProductA.addEventListener("click", function () {
+      const productId = viewProductA.getAttribute("product-id");
+
+      window.location.href = `/product.html?product_id=${productId}`;
+    });
   });
 }
 
