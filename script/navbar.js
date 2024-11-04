@@ -111,7 +111,7 @@ export function buildNavigation() {
 
     profileLi.classList.add("nav-items", "profile", "wrapLis");
     profileIcon.classList.add("fa-solid", "fa-user");
-    logOut.classList.add("nav-items", "wrapLis");
+    logOut.classList.add("nav-items", "wrapLis", "logoutItem");
 
     profileT.textContent = "Profile";
     logutA.textContent = "log out";
@@ -144,12 +144,17 @@ export function buildNavigation() {
     const navDropDown = document.querySelector(".navDropdown");
 
     const dropDonwButtons = document.createElement("div");
-    const dropDwonLogin = document.createElement("a");
+    const dropDownProfile = document.createElement("a");
+    const dropDownLogut = document.createElement("a");
 
     dropDonwButtons.classList.add("dropButtons");
-    dropDwonLogin.textContent = authText.textContent;
+    dropDownProfile.textContent = profileT.textContent;
+    dropDownLogut.textContent = logOut.textContent;
 
-    dropDonwButtons.appendChild(dropDwonLogin);
+    dropDownLogut.classList.add("logoutItem");
+
+    dropDonwButtons.appendChild(dropDownLogut);
+    dropDonwButtons.appendChild(dropDownProfile);
     navDropDown.appendChild(dropDonwButtons);
 
     burgerBar.addEventListener("click", function () {
@@ -168,11 +173,15 @@ export function buildNavigation() {
       }
     });
 
-    logOut.addEventListener("click", function () {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
-      window.location.reload();
-      window.location.href = "/";
+    const logoutItem = document.querySelectorAll(".logoutItem");
+
+    logoutItem.forEach((item) => {
+      item.addEventListener("click", function () {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        window.location.reload();
+        window.location.href = "/";
+      });
     });
   } else {
     logo.classList.add("logo");
@@ -187,16 +196,16 @@ export function buildNavigation() {
     ulWrapper.classList.add("nav-items");
     burger.classList.add("headerBar", "fa-solid", "fa-bars");
 
-    wrapInside.classList.add("wrapInside", "authPage");
+    wrapInside.classList.add("wrapInside", "authPage", "hrefClass");
 
     regLogin.classList.add("nav-items");
     userIcon.classList.add("fa-regular", "fa-user", "userIcon");
     authText.textContent = "Login";
     authText.classList.add("nav-item");
 
-    wrapInside.addEventListener("click", function () {
-      window.location.href = "auth.html";
-    });
+    // wrapInside.addEventListener("click", function () {
+    //   window.location.href = "auth.html";
+    // });
 
     searchWrap.classList.add("wrapSearch");
     searchInput.classList.add("searchBar");
@@ -218,11 +227,20 @@ export function buildNavigation() {
     const dropDonwButtons = document.createElement("div");
     const dropDwonLogin = document.createElement("a");
 
+    dropDwonLogin.classList.add("hrefClass");
+
     dropDonwButtons.classList.add("dropButtons");
     dropDwonLogin.textContent = authText.textContent;
 
     dropDonwButtons.appendChild(dropDwonLogin);
     navDropDown.appendChild(dropDonwButtons);
+
+    const hrefClass = document.querySelectorAll(".hrefClass");
+    hrefClass.forEach((item) => {
+      item.addEventListener("click", function () {
+        window.location.href = "/auth.html";
+      });
+    });
 
     burgerBar.addEventListener("click", function () {
       navDropDown.classList.toggle("active");

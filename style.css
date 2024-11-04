@@ -293,6 +293,8 @@ main {
   height: 300px;
   background-color: #872818;
   transition: all 0.5s;
+  position: fixed;
+  z-index: 1120;
 }
 
 .navDropdown .dropButtons {
