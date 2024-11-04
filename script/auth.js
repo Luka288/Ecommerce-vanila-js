@@ -105,7 +105,7 @@ function formValidation() {
       lastName: lastName.value,
       email: email.value,
       password: password.value,
-      phone: phone.value,
+      phone: `+995${phone.value}`,
       age: age.value,
       address: address.value,
       zipcode: zipCode.value.toString(),
@@ -143,7 +143,9 @@ async function signUp(user) {
 
     const pareseRegister = await registerResponse.json();
 
-    console.log(pareseRegister);
+    if (pareseRegister) {
+      signUpForm.reset();
+    }
   } catch (error) {
     // console.log(error);
   }
