@@ -117,10 +117,19 @@
 
 .thumbnails {
   display: flex;
-  margin: 1rem auto 0;
+  flex-wrap: wrap;
   padding: 0;
+  gap: 10px;
+
+  margin: 1rem auto 0;
+
   justify-content: center;
   list-style: none;
+}
+
+.thumbnails li {
+  border: 1px solid gray;
+  border-radius: 12px;
 }
 
 .thumbnail {
