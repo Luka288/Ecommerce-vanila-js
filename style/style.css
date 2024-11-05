@@ -30,14 +30,6 @@ nav {
 .nav-items {
   display: flex;
   align-items: center;
-  /* font-family: var(--main-font);
-  border-radius: 12px;
-  background-color: white;
-  width: 130px;
-  height: 44px;
-  list-style: none;
-  z-index: 1;
-  gap: 30px; */
 }
 
 .nav-item,
@@ -50,8 +42,13 @@ nav {
 
 .logoSide {
   /* width: 100%; */
-  padding-left: 5%;
+  padding-left: 15%;
   font-family: var(--main-font);
+}
+
+.profileT {
+  text-decoration: none;
+  color: black;
 }
 
 .logo {
@@ -325,6 +322,7 @@ main {
 
 .searchIcon {
   position: absolute;
+  cursor: pointer;
   color: var(--main-color);
   top: 50%;
   left: 10px;
@@ -896,9 +894,9 @@ main {
 }
 
 .swal2-toast {
-  top: 95px; /* Adjust this value as needed to sit below the navbar */
-  z-index: 1122; /* Should be higher than the navbar */
-  margin-top: 5%; /* Additional margin if needed */
+  top: 95px;
+  z-index: 1122;
+  margin-top: 5%;
 }
 
 .description {

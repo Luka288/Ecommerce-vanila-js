@@ -111,10 +111,13 @@ export function buildNavigation() {
 
     profileLi.classList.add("nav-items", "profile", "wrapLis");
     profileIcon.classList.add("fa-solid", "fa-user");
+    profileT.classList.add("profileT");
     logOut.classList.add("nav-items", "wrapLis", "logoutItem");
 
     profileT.textContent = "Profile";
     logutA.textContent = "log out";
+
+    profileT.href = "/profile.html";
 
     logoSide.classList.add("logoSide");
     logoSide.appendChild(logo);
@@ -156,6 +159,12 @@ export function buildNavigation() {
     dropDonwButtons.appendChild(dropDownLogut);
     dropDonwButtons.appendChild(dropDownProfile);
     navDropDown.appendChild(dropDonwButtons);
+
+    searchIcon.addEventListener("click", function () {
+      if (searchInput.value) {
+        window.location.href = `/search.html?search=${searchInput.value}`;
+      }
+    });
 
     burgerBar.addEventListener("click", function () {
       navDropDown.classList.toggle("active");
