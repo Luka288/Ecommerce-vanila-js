@@ -1,4 +1,5 @@
 import { buildNavigation } from "./navbar.js";
+import { buildResponsiveCategory } from "./category.js";
 
 const thumbnails = document.getElementById("thumbnails");
 const mainPhotos = document.querySelector(".mainPhotos");
@@ -21,6 +22,7 @@ function init() {
   buildNavigation();
   specificProdFromUrl();
   mountSplider();
+  buildResponsiveCategory();
 }
 
 function specificProdFromUrl() {

@@ -212,10 +212,6 @@ export function buildNavigation() {
     authText.textContent = "Login";
     authText.classList.add("nav-item");
 
-    // wrapInside.addEventListener("click", function () {
-    //   window.location.href = "auth.html";
-    // });
-
     searchWrap.classList.add("wrapSearch");
     searchInput.classList.add("searchBar");
     searchWrap.appendChild(searchIcon);
@@ -305,6 +301,7 @@ async function searchEngine(params) {
       itemTitle.classList.add("searchItemTitle");
       img.classList.add("searchItemImg");
       liParent.classList.add("searchItemsWrap");
+      liParent.setAttribute("product-id", element._id);
 
       img.src = element.thumbnail;
       itemTitle.textContent = `${element.title}`;
@@ -312,6 +309,11 @@ async function searchEngine(params) {
       liParent.appendChild(img);
       liParent.appendChild(itemTitle);
       ulWrap.appendChild(liParent);
+
+      liParent.addEventListener("click", function () {
+        const _id = liParent.getAttribute("product-id");
+        window.location.href = `/product.html?product_id=${_id}`;
+      });
     });
     searchOptions.appendChild(ulWrap);
     checkSearch = true;

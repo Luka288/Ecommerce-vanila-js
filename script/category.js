@@ -1,5 +1,6 @@
 export function buildResponsiveCategory() {
-  const whereTohide = ["/auth.html", "/profile.html"];
+  const whereTohide = ["/auth.html", "/profile.html", "/product.html"];
+
   const responsiveCategory = document.querySelector(".responsiveCategory");
   const slideCategory = document.querySelector(".slideCategory");
   let checkIfLoaded = false;
