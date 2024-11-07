@@ -4,6 +4,7 @@
   max-height: 220px;
   width: 350px;
   height: 220px;
+  visibility: hidden;
   position: fixed;
   bottom: 35px;
   right: 20px;

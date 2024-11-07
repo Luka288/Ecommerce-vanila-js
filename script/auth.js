@@ -8,6 +8,7 @@ import {
   passwordRegex,
   usernameRegex,
 } from "./regex.js";
+import { cookiesCountDown } from "./consts.js";
 
 const signInBtn = document.getElementById("signIn");
 const signUpForm = document.getElementById("signUpForm");
@@ -184,9 +185,11 @@ async function signIn(userInfo) {
 
     if (canSave()) {
       Cookies.set("access_token", parsedInfo.access_token, {
-        expires: 7,
+        expires: cookiesCountDown,
       });
-      Cookies.set("refresh_token", parsedInfo.refresh_token, { expires: 7 });
+      Cookies.set("refresh_token", parsedInfo.refresh_token, {
+        expires: cookiesCountDown,
+      });
     } else {
       const userSessionAccess = sessionStorage.setItem(
         "access_token",
@@ -197,7 +200,6 @@ async function signIn(userInfo) {
         parsedInfo.refresh_token
       );
     }
-
     window.location.reload();
     window.location.href = "/";
   } catch (error) {
