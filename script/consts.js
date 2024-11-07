@@ -1,1 +1,1 @@
-export const cookiesCountDown = new Date(new Date().getTime() + 10 * 1000);
+export const cookiesCountDown = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;

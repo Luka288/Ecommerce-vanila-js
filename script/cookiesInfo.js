@@ -1,3 +1,5 @@
+import { cookiesCountDown } from "./consts.js";
+
 export function canSave() {
   const cookieConsent = localStorage.getItem("cookieConsent");
   const consentExpiration = localStorage.getItem("consentExpiration");
@@ -21,7 +23,7 @@ export function canSave() {
 
   accept.addEventListener("click", function () {
     localStorage.setItem("cookieConsent", "true");
-    Cookies.set("approved", true, { expires: 10 / 86400 });
+    Cookies.set("approved", true, { expires: cookiesCountDown });
     cookies.style.display = "none";
   });
 
@@ -29,7 +31,7 @@ export function canSave() {
     localStorage.setItem("cookieConsent", "false");
     cookies.style.display = "none";
 
-    Cookies.set("denied", true, { expires: 10 / 86400 });
+    Cookies.set("denied", true, { expires: cookiesCountDown });
   });
 
   if (Cookies.get("denied") || Cookies.get("approved")) {
