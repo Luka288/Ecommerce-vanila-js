@@ -35,7 +35,6 @@ export function buildNavigation() {
       window.location = "search.html";
     }
     window.location = `search.html?search=${encodeURIComponent(searchValue)}`;
-    console.log(searchValue);
   });
 
   const bg = document.querySelector(".bg");
@@ -58,7 +57,6 @@ export function buildNavigation() {
   });
 
   empty.addEventListener("click", function (e) {
-    console.log("test");
     e.preventDefault();
   });
 
@@ -94,10 +92,13 @@ export function buildNavigation() {
     e.preventDefault();
   });
 
-  const refresh_token = localStorage.getItem("refresh_token");
-  const access_token = localStorage.getItem("access_token");
+  const userSessionRefresh = sessionStorage.getItem("refresh_token");
+  const userSessionAccess = sessionStorage.getItem("access_token");
 
-  if (refresh_token && access_token) {
+  if (
+    (Cookies.get("refresh_token") && Cookies.get("access_token")) ||
+    (userSessionAccess && userSessionRefresh)
+  ) {
     const buttonsUl = document.createElement("ul");
     const profileLi = document.createElement("li");
     const profileIcon = document.createElement("i");
@@ -186,8 +187,10 @@ export function buildNavigation() {
 
     logoutItem.forEach((item) => {
       item.addEventListener("click", function () {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
+        sessionStorage.removeItem("access_token");
+        sessionStorage.removeItem("refresh_token");
+        Cookies.remove("access_token");
+        Cookies.remove("refresh_token");
         window.location.reload();
         window.location.href = "/";
       });
@@ -317,9 +320,7 @@ async function searchEngine(params) {
     });
     searchOptions.appendChild(ulWrap);
     checkSearch = true;
-    console.log(parseRes);
-  } catch (error) {}
+  } catch (error) {
+    //! swal fire on error
+  }
 }
-
-// sort
-//https://api.everrest.educata.dev/shop/products/search?page_size=2&page_index=1&sort_by=title&sort_direction=asc&price_min=500&price_max=2000

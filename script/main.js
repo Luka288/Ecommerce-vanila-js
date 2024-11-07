@@ -2,6 +2,7 @@
 import { buildNavigation } from "./navbar.js";
 import { buildResponsiveCategory } from "./category.js";
 import { guard } from "./routes.js";
+import { canSave } from "./cookiesInfo.js";
 
 const arrow = document.querySelectorAll(".arrow");
 const carusel = document.querySelector(".carusel");
@@ -35,14 +36,13 @@ const slides = {
 
 init();
 
-// https:api.everrest.educata.dev/shop/products/category/2?page_size=10
-
 function init() {
   buildNavigation();
   mountSplide();
   brandService();
   buildResponsiveCategory();
   guard();
+  canSave();
 }
 
 function generateCard(item, parent) {
@@ -172,7 +172,7 @@ async function iconService(params) {
       brandUl.appendChild(li);
     });
   } catch (error) {
-    console.log(err);
+    //! swal fire on error
   }
 }
 
@@ -216,7 +216,6 @@ async function loadBrands(categoryID) {
     }
 
     const parseResponse = await response.json();
-    console.log(parseResponse);
 
     const phoneBrand = parseResponse.products
       .filter((product) => product.category.name === "phones")
@@ -236,7 +235,7 @@ async function loadBrands(categoryID) {
       brandNames(eachBrand, phoneBrands);
     });
   } catch (err) {
-    console.log(err);
+    //! swal fire on error
   }
 }
 

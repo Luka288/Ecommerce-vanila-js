@@ -47,16 +47,11 @@ async function specificProd(_id) {
 
     const parseItem = await itemResponse.json();
 
-    // test.src = parseItem.thumbnail;
-
     buildDescription(parseItem);
     buildSplide(parseItem);
     buildStatic(parseItem);
-    console.log(parseItem);
-
-    // console.log(parseItem);
   } catch (error) {
-    console.log(error);
+    //! swal fire on error
   }
 }
 
@@ -100,7 +95,6 @@ function buildSplide(response) {
     const mainImg = document.createElement("img");
 
     mainImg.src = response.thumbnail;
-    console.log(response);
     mainImgCon.appendChild(mainImg);
     mainPhotos.appendChild(mainImgCon);
   }

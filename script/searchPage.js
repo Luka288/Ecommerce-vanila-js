@@ -46,9 +46,9 @@ async function loadProducts(searchQuery, page = currPage) {
 
     generateCard(parseRes.products);
     foundItems(parseRes.products);
-
-    console.log(parseRes);
-  } catch (error) {}
+  } catch (error) {
+    //! swal fire on error
+  }
 }
 
 function paginator(res) {
@@ -72,7 +72,6 @@ function paginator(res) {
 
     lipage.addEventListener("click", function () {
       currPage = lipage.value;
-      console.log(currPage);
       loadProducts(searchWord, currPage);
     });
 

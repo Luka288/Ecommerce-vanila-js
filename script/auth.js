@@ -1,6 +1,7 @@
 import { buildNavigation } from "./navbar.js";
 import { guard } from "./routes.js";
 import { buildResponsiveCategory } from "./category.js";
+import { canSave } from "./cookiesInfo.js";
 import {
   emailRegex,
   lastNameRegex,
@@ -49,6 +50,7 @@ function init() {
   buildNavigation();
   guard();
   buildResponsiveCategory();
+  canSave();
 }
 
 function formValidation() {
@@ -94,8 +96,7 @@ function formValidation() {
 
   document.querySelectorAll('[name="gender"]').forEach((item) => {
     if (item.checked) {
-      gender = item.value; // Use item.value to get the value of the selected radio
-      console.log(gender);
+      gender = item.value;
     }
   });
 
@@ -110,8 +111,6 @@ function formValidation() {
       errorText.textContent = authErrors[key];
       errorText.style.color = "red";
     }
-
-    console.log(authErrors);
   }
 
   if (Object.keys(authErrors).length === 0) {
@@ -128,8 +127,6 @@ function formValidation() {
       avatar: "https://api.dicebear.com/7.x/pixel-art/svg?seed=",
     };
 
-    console.log(createUser.zipCode);
-
     signUp(createUser);
   }
 }
@@ -141,10 +138,6 @@ signUpForm.addEventListener("submit", function (e) {
 
 async function signUp(user) {
   try {
-    console.log(
-      "User data being sent to the server:",
-      JSON.stringify(user, null, 2)
-    );
     const registerResponse = await fetch(
       "https://api.everrest.educata.dev/auth/sign_up",
       {
@@ -166,7 +159,7 @@ async function signUp(user) {
       signUpForm.reset();
     }
   } catch (error) {
-    // console.log(error);
+    //! swal fire
   }
 }
 
@@ -189,23 +182,33 @@ async function signIn(userInfo) {
 
     const parsedInfo = await sendRequest.json();
 
-    const access_token = localStorage.setItem(
-      "access_token",
-      parsedInfo.access_token
-    );
-
-    const refresh_token = localStorage.setItem(
-      "refresh_token",
-      parsedInfo.refresh_token
-    );
+    if (canSave()) {
+      Cookies.set("access_token", parsedInfo.access_token, {
+        expires: 7,
+        secure: true,
+        httpOnly: true,
+      });
+      Cookies.set("refresh_token", parsedInfo.refresh_token, {
+        expires: 7,
+        secure: true,
+        httpOnly: true,
+      });
+    } else {
+      const userSessionAccess = sessionStorage.setItem(
+        "access_token",
+        parsedInfo.access_token
+      );
+      const userSessionRefresh = sessionStorage.setItem(
+        "refresh_token",
+        parsedInfo.refresh_token
+      );
+    }
 
     window.location.reload();
     window.location.href = "/";
   } catch (error) {
-    console.log(error);
+    //! swal fire on error
   }
-
-  console.log(userInfo);
 }
 
 signInForm.addEventListener("submit", function (e) {

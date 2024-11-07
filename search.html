@@ -11,18 +11,41 @@
   ></script>
   <script src="./node_modules/axios/dist/axios.min.js" defer></script>
   <script type="module" src="./script/searchPage.js" defer></script>
+  <script src="./node_modules/js-cookie/dist/js.cookie.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     rel="stylesheet"
   />
+  <link rel="stylesheet" href="./style/cookies.css" />
   <link rel="stylesheet" href="./style/navbar.css" />
   <link rel="stylesheet" href="./style/search.css" />
   <body>
     <nav id="navigation"></nav>
     <div class="navDropdown"></div>
     <div class="searchOptions"></div>
+    <div class="cookies">
+      <p class="aboutCookies">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem quae in
+        suscipit, molestiae accusantium porro nostrum natus error cumque vitae
+        dolorem autem aperiam culpa, vel ipsum nihil consequuntur, laudantium
+        cupiditate.
+      </p>
+      <ul class="cookieUl">
+        <li class="acceptCookies">
+          <a>Accept Cookies</a>
+        </li>
+        <li class="declineCookies">
+          <a>Decline Cookies</a>
+        </li>
+      </ul>
+      <ul class="detailsOfCookies cookieUl">
+        <li>
+          <a href="">About Cookies</a>
+        </li>
+      </ul>
+    </div>
     <main class="mainContainer">
       <div class="wrapResponsiveCategory">
         <div class="responsiveCategory">
