@@ -185,14 +185,8 @@ async function signIn(userInfo) {
     if (canSave()) {
       Cookies.set("access_token", parsedInfo.access_token, {
         expires: 7,
-        secure: true,
-        httpOnly: true,
       });
-      Cookies.set("refresh_token", parsedInfo.refresh_token, {
-        expires: 7,
-        secure: true,
-        httpOnly: true,
-      });
+      Cookies.set("refresh_token", parsedInfo.refresh_token, { expires: 7 });
     } else {
       const userSessionAccess = sessionStorage.setItem(
         "access_token",
