@@ -13,14 +13,6 @@ export function canSave() {
     localStorage.removeItem("consentExpiration");
   }
 
-  // const checkUser = Cookies.get("access_token") && Cookies.get("refresh_token");
-
-  // if (cookieConsent === "true" || checkUser) {
-  //   cookies.style.display = "none";
-  // } else {
-  //   cookies.style.display = "block";
-  // }
-
   accept.addEventListener("click", function () {
     localStorage.setItem("cookieConsent", "true");
     Cookies.set("approved", true, { expires: cookiesCountDown });

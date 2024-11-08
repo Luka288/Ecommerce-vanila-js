@@ -141,13 +141,13 @@ function loginValidate() {
   if (!loginEmail.value.match(emailRegex)) {
     loginErrors.loginEmail = "Check email address";
   } else {
-    loginErrors.loginEmail = "";
+    delete loginErrors.loginEmail;
   }
 
   if (!loginPassword.value.match(passwordRegex)) {
     loginErrors.loginPassword = "Password invalid";
   } else {
-    loginErrors.loginPassword = "";
+    delete loginErrors.loginPassword;
   }
 
   for (let err in loginErrors) {
@@ -174,6 +174,8 @@ signInForm.addEventListener("submit", function (e) {
 
   if (Object.keys(loginErrors).length === 0) {
     signIn(userInfo);
+  } else {
+    console.log(Object.keys(loginErrors));
   }
 });
 

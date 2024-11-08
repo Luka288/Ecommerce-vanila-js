@@ -116,6 +116,7 @@ export function buildNavigation() {
     logOut.classList.add("nav-items", "wrapLis", "logoutItem");
 
     profileT.textContent = "Profile";
+    profileT.href = "/profile.html";
     logutA.textContent = "log out";
 
     profileT.href = "/profile.html";
