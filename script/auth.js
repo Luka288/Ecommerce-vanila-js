@@ -18,6 +18,10 @@ const passwordInput = document.getElementById("password");
 const showHide = document.querySelector(".showHide");
 const toggleCreate = document.querySelector(".toggleCreate");
 
+//login form
+const loginEmail = document.getElementById("email");
+const loginPassword = document.getElementById("password");
+
 //registration form
 const firstName = document.getElementById("firstName");
 const lastName = document.getElementById("lastName");
@@ -131,10 +135,42 @@ function formValidation() {
     signUp(createUser);
   }
 }
+const loginErrors = {};
+
+function loginValidate() {
+  if (!loginEmail.value.match(emailRegex)) {
+    loginErrors.loginEmail = "Check email address";
+  }
+
+  if (!loginPassword.value.match(passwordRegex)) {
+    loginErrors.loginPassword = "Password invalid";
+  }
+
+  for (let err in loginErrors) {
+    const errP = document.getElementById("error-" + err);
+    if (errP) {
+      errP.textContent = loginErrors[err];
+    }
+  }
+}
 
 signUpForm.addEventListener("submit", function (e) {
   e.preventDefault();
   formValidation();
+});
+
+signInForm.addEventListener("submit", function (e) {
+  loginValidate();
+  e.preventDefault();
+
+  const userInfo = {
+    email: emailInput.value,
+    password: passwordInput.value,
+  };
+
+  if (Object.keys(loginErrors).length === 0) {
+    signIn(userInfo);
+  }
 });
 
 async function signUp(user) {
@@ -206,17 +242,6 @@ async function signIn(userInfo) {
     //! swal fire on error
   }
 }
-
-signInForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const userInfo = {
-    email: emailInput.value,
-    password: passwordInput.value,
-  };
-
-  signIn(userInfo);
-});
 
 showHide.addEventListener("click", function () {
   if (showHide.classList.contains("fa-eye")) {

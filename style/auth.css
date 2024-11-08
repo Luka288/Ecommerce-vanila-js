@@ -142,3 +142,9 @@
   text-transform: capitalize;
   text-decoration: none;
 }
+
+#error-loginEmail,
+#error-loginPassword {
+  color: red;
+  font-size: 12px;
+}
