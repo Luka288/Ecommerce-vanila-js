@@ -140,10 +140,14 @@ const loginErrors = {};
 function loginValidate() {
   if (!loginEmail.value.match(emailRegex)) {
     loginErrors.loginEmail = "Check email address";
+  } else {
+    loginErrors.loginEmail = "";
   }
 
   if (!loginPassword.value.match(passwordRegex)) {
     loginErrors.loginPassword = "Password invalid";
+  } else {
+    loginErrors.loginPassword = "";
   }
 
   for (let err in loginErrors) {
