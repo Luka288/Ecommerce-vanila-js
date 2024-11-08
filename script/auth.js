@@ -192,6 +192,8 @@ async function signUp(user) {
       }
     );
 
+    verifyEmail(user.email);
+
     const pareseRegister = await registerResponse.json();
 
     if (pareseRegister) {
@@ -204,6 +206,31 @@ async function signUp(user) {
   } catch (error) {
     //! swal fire
   }
+}
+
+async function verifyEmail(email) {
+  try {
+    const sendEmail = await fetch(
+      "https://api.everrest.educata.dev/auth/verify_email",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          email: `${email}`,
+        },
+      }
+    );
+
+    if (!sendEmail.ok) {
+      throw new Error("err");
+    }
+
+    const parseResponse = await sendEmail.json();
+
+    console.log(parseResponse);
+  } catch (error) {}
 }
 
 async function signIn(userInfo) {
