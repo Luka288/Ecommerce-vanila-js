@@ -178,3 +178,118 @@
   font-size: 20px;
   height: 200px;
 }
+
+@media (max-width: 1024px) {
+  .purchaseContainer {
+    width: 100%;
+    display: flex;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .priceSide {
+    width: 50%;
+    flex-wrap: nowrap;
+  }
+
+  .details {
+    align-items: center;
+  }
+
+  .installment {
+    width: 100px;
+    margin: 0;
+  }
+
+  .installment h1 {
+    font-size: 15px;
+  }
+
+  .purchaseWrap {
+    width: 130px;
+    height: 40px;
+  }
+
+  .purchaseBtn {
+    font-size: 16px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  /* !! */
+
+  .purchaseContainer {
+    display: none;
+  }
+
+  .wrapForResp {
+    width: 100%;
+    height: 150px;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    position: fixed;
+    background-color: #eeecec;
+  }
+
+  .installmentPurchase {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .btn {
+    border: none;
+    background-color: var(--main-color);
+    color: white;
+    width: 130px;
+    height: 44px;
+  }
+
+  .discSpan {
+    color: red;
+    text-decoration: line-through;
+  }
+
+  .price {
+    font-family: var(--main-font);
+    color: black;
+    font-size: 23px;
+  }
+}
+
+/* @media (max-width: 768px) {
+  .wrapForResp {
+    max-width: 200px;
+  }
+
+  .details {
+    display: none;
+  }
+
+  .wrapForResp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .purchaseContainer {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .purchaseContainer .priceSide {
+    width: auto;
+  }
+
+  .wrapForResp .addToCart {
+    width: 200px;
+  }
+} */

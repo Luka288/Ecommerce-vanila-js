@@ -80,9 +80,9 @@ nav {
 }
 
 .wrapLis {
-  width: 130px;
+  width: 90px;
   height: 44px;
-  gap: 25px;
+  gap: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -453,41 +453,7 @@ main {
   gap: 30px;
 }
 
-@media (max-width: 425px) {
-  .searchBar {
-    width: 150px;
-    padding-left: 25%;
-  }
-
-  .searchOptions {
-    width: auto;
-  }
-
-  .searchOptions h1 {
-    font-size: 15px;
-  }
-
-  .searchItems {
-    width: 300px;
-  }
-
-  .searchOptions.animateHeight {
-    width: 350px;
-  }
-}
-
-@media (max-width: 320px) {
-  .searchBar {
-    width: 100px;
-    padding-left: 35%;
-  }
-
-  .searchOptions.animateHeight {
-    width: 300px;
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .headerBar {
     display: flex;
     align-items: center;
@@ -521,5 +487,39 @@ main {
 
   .responsiveCategory {
     display: flex;
+  }
+}
+
+@media (max-width: 425px) {
+  .searchBar {
+    width: 150px;
+    padding-left: 25%;
+  }
+
+  .searchOptions {
+    width: auto;
+  }
+
+  .searchOptions h1 {
+    font-size: 15px;
+  }
+
+  .searchItems {
+    width: 300px;
+  }
+
+  .searchOptions.animateHeight {
+    width: 350px;
+  }
+}
+
+@media (max-width: 320px) {
+  .searchBar {
+    width: 100px;
+    padding-left: 35%;
+  }
+
+  .searchOptions.animateHeight {
+    width: 300px;
   }
 }

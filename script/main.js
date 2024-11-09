@@ -24,6 +24,8 @@ const samsungSide = document.getElementById("samsungSide");
 const lenovoSide = document.getElementById("lenovoSide");
 const brandUl = document.querySelector(".brandUl");
 
+let saveId;
+
 let currPage = 1;
 let totalProducts;
 let pages;
@@ -102,6 +104,8 @@ function generateCard(item, parent) {
 
   button.addEventListener("click", function () {
     const _id = button.getAttribute("product-id");
+    saveId = _id;
+    localStorage.setItem("saveitem", saveId);
     window.location.href = `/product.html?product_id=${_id}`;
   });
 }

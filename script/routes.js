@@ -23,3 +23,11 @@ export function guard() {
     window.location.href = "/index.html";
   }
 }
+
+// export function productPageGuard() {
+//   let check = localStorage.getItem("saveitem");
+
+//   if (check) {
+//     console.log(check);
+//   }
+// }

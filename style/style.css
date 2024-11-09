@@ -7,7 +7,7 @@ html {
   box-sizing: border-box;
 }
 
-nav {
+/* nav {
   width: 100%;
   height: 80px;
   position: fixed;
@@ -34,7 +34,7 @@ nav {
 }
 
 .logoSide {
-  /* width: 100%; */
+  width: 100%;
   padding-left: 15%;
   font-family: var(--main-font);
 }
@@ -58,7 +58,7 @@ nav {
 }
 
 .buttonSide {
-  /* width: 100%; */
+  width: 100%;
   height: auto;
   display: flex;
   justify-content: flex-end;
@@ -77,8 +77,8 @@ nav {
   border-radius: 12px;
   background-color: white;
   list-style: none;
-}
-
+} */
+/* 
 .wrapLis {
   width: 130px;
   height: 44px;
@@ -93,7 +93,7 @@ nav {
   background-color: white;
   color: black;
   list-style: none;
-}
+} */
 
 .wrapInside p {
   font-size: 17px;

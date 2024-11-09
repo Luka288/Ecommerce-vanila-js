@@ -1,5 +1,6 @@
 import { buildNavigation } from "./navbar.js";
 import { buildResponsiveCategory } from "./category.js";
+// import { productPageGuard } from "./routes.js";
 
 const thumbnails = document.getElementById("thumbnails");
 const mainPhotos = document.querySelector(".mainPhotos");
@@ -17,6 +18,10 @@ const categoryP = document.querySelector(".categoryP");
 const descP = document.querySelector(".descP");
 const addToCart = document.querySelector(".addToCart");
 
+//responsive
+
+const priceResp = document.querySelector(".price");
+
 init();
 
 function init() {
@@ -24,6 +29,7 @@ function init() {
   specificProdFromUrl();
   mountSplider();
   buildResponsiveCategory();
+  // productPageGuard();
 }
 
 function specificProdFromUrl() {
@@ -136,17 +142,25 @@ function buildDescription(item) {
 function buildStatic(res) {
   if (res.price.discountPercentage) {
     const discountSpan = document.createElement("span");
+    const responsiveSpan = document.createElement("span");
     const currentPrice = document.createElement("h1");
 
     discountSpan.classList.add("discountSpan");
 
     discountSpan.textContent = `${res.price.beforeDiscount} ${res.price.currency}`;
+    responsiveSpan.textContent = `${res.price.beforeDiscount} ${res.price.currency}`;
     currentPrice.textContent = `${res.price.current} ${res.price.currency}`;
+
+    responsiveSpan.classList.add("discSpan");
+
+    priceResp.textContent = `${res.price.current} ${res.price.currency}`;
+    priceResp.appendChild(responsiveSpan);
     priceSide.appendChild(discountSpan);
     priceSide.appendChild(currentPrice);
   } else {
     const currentPrice = document.createElement("h1");
     currentPrice.textContent = `${res.price.current} ${res.price.currency}`;
+    priceResp.textContent = `${res.price.current} ${res.price.currency}`;
     priceSide.appendChild(currentPrice);
   }
 
