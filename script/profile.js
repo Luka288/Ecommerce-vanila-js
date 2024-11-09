@@ -1,4 +1,5 @@
 import { buildNavigation } from "./navbar.js";
+import { guard } from "./routes.js";
 
 const verifyContaienr = document.querySelector(".verifyContaienr");
 const profileContainer = document.querySelector(".profileContainer");
@@ -8,6 +9,7 @@ init();
 function init() {
   buildNavigation();
   userCookie();
+  guard();
 }
 
 //verifyContaienr.style.display = "none";
@@ -30,6 +32,14 @@ async function currUser(token) {
 
     const parseUser = await userRes.json();
 
+    for (let info in parseUser) {
+      const userItem = document.getElementById("user-" + info);
+
+      if (userItem) {
+        userItem.textContent += parseUser[info];
+      }
+    }
+
     console.log(parseUser);
   } catch (error) {
     console.log(error);
@@ -48,3 +58,7 @@ function userCookie() {
 }
 
 function userSession() {}
+
+function buildInfo(params) {
+  // const
+}

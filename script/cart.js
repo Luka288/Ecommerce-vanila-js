@@ -30,9 +30,8 @@ async function requestCart(token) {
 
     parseRequest.products.forEach((element) => {
       loadProducts(element.productId);
+      console.log(element);
     });
-
-    console.log(parseRequest);
   } catch (error) {}
 }
 
@@ -49,7 +48,5 @@ async function loadProducts(_id) {
     );
 
     const parseItems = await loadCartItems.json();
-
-    console.log(parseItems);
   } catch (error) {}
 }
