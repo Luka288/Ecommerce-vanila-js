@@ -6,3 +6,5 @@ export function guard() {
     window.location.href = "index.html";
   }
 }
+
+// !! change localstorage to token && sessionStorage

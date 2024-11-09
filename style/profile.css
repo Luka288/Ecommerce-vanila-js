@@ -9,3 +9,8 @@
   background-color: red;
   justify-self: center;
 }
+
+.verifyContaienr {
+  display: none;
+  text-align: center;
+}

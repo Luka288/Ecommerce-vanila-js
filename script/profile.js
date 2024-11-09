@@ -1,11 +1,16 @@
 import { buildNavigation } from "./navbar.js";
 
+const verifyContaienr = document.querySelector(".verifyContaienr");
+const profileContainer = document.querySelector(".profileContainer");
+
 init();
 
 function init() {
   buildNavigation();
   userCookie();
 }
+
+//verifyContaienr.style.display = "none";
 
 async function currUser(token) {
   try {
@@ -18,7 +23,9 @@ async function currUser(token) {
     });
 
     if (!userRes.ok) {
-      throw new Error("Err");
+      verifyContaienr.style.display = "block";
+      profileContainer.style.display = "none";
+      throw new Error("Check email to verify");
     }
 
     const parseUser = await userRes.json();

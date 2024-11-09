@@ -15,6 +15,7 @@ const issueDate = document.querySelector(".issueDate");
 const brandP = document.querySelector(".brandP");
 const categoryP = document.querySelector(".categoryP");
 const descP = document.querySelector(".descP");
+const addToCart = document.querySelector(".addToCart");
 
 init();
 
@@ -50,9 +51,73 @@ async function specificProd(_id) {
     buildDescription(parseItem);
     buildSplide(parseItem);
     buildStatic(parseItem);
+
+    addToCart.addEventListener("click", function () {
+      createCart(parseItem._id);
+    });
   } catch (error) {
     //! swal fire on error
   }
+}
+
+async function createCart(_id) {
+  try {
+    let token = "";
+
+    if (Cookies.get("refresh_token")) {
+      token = Cookies.get("refresh_token");
+    } else {
+      token = sessionStorage.getItem("refresh_token");
+    }
+
+    const sendID = await fetch(
+      "https://api.everrest.educata.dev/shop/cart/product",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: _id,
+          quantity: 1,
+        }),
+      }
+    );
+
+    const parse = await sendID.json();
+    console.log(parse);
+
+    if (parse.error === "User already created cart, use patch endpoint") {
+      console.log(parse);
+      getCart(token, _id, 1);
+    }
+  } catch (error) {}
+}
+
+async function getCart(token, _id, quantity) {
+  try {
+    const requestCart = await fetch(
+      "https://api.everrest.educata.dev/shop/cart/product",
+      {
+        method: "PATCH",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          id: _id,
+          quantity: quantity,
+        }),
+      }
+    );
+
+    const parseRequest = await requestCart.json();
+
+    console.log(parseRequest);
+  } catch (error) {}
 }
 
 function buildDescription(item) {

@@ -102,6 +102,8 @@ export function buildNavigation() {
     const buttonsUl = document.createElement("ul");
     const profileLi = document.createElement("li");
     const profileIcon = document.createElement("i");
+    const cartLi = document.createElement("li");
+    const cartPage = document.createElement("a");
     const profileT = document.createElement("a");
     const logOut = document.createElement("li");
     const logutA = document.createElement("a");
@@ -114,10 +116,14 @@ export function buildNavigation() {
     profileIcon.classList.add("fa-solid", "fa-user");
     profileT.classList.add("profileT");
     logOut.classList.add("nav-items", "wrapLis", "logoutItem");
+    cartLi.classList.add("nav-items", "wrapLis");
+
+    cartPage.textContent = "Cart";
+    cartPage.href = "/cart.html";
 
     profileT.textContent = "Profile";
     profileT.href = "/profile.html";
-    logutA.textContent = "log out";
+    logutA.textContent = "Log out";
 
     profileT.href = "/profile.html";
 
@@ -131,6 +137,7 @@ export function buildNavigation() {
     searchWrap.classList.add("wrapSearch");
     searchInput.classList.add("searchBar");
 
+    cartLi.appendChild(cartPage);
     searchWrap.appendChild(searchIcon);
     searchWrap.appendChild(searchInput);
     navigation.appendChild(searchWrap);
@@ -139,6 +146,7 @@ export function buildNavigation() {
     profileLi.appendChild(profileT);
 
     logOut.appendChild(logutA);
+    buttonsUl.appendChild(cartLi);
     buttonsUl.appendChild(logOut);
     buttonsUl.appendChild(profileLi);
     navigation.appendChild(buttonsUl);
@@ -147,6 +155,7 @@ export function buildNavigation() {
 
     const burgerBar = document.querySelector(".headerBar");
     const navDropDown = document.querySelector(".navDropdown");
+    const dropDownCart = document.createElement("a");
 
     const dropDonwButtons = document.createElement("div");
     const dropDownProfile = document.createElement("a");
@@ -155,9 +164,13 @@ export function buildNavigation() {
     dropDonwButtons.classList.add("dropButtons");
     dropDownProfile.textContent = profileT.textContent;
     dropDownLogut.textContent = logOut.textContent;
+    dropDownCart.textContent = cartPage.textContent;
+
+    dropDownCart.href = cartPage.href;
 
     dropDownLogut.classList.add("logoutItem");
 
+    dropDonwButtons.appendChild(dropDownCart);
     dropDonwButtons.appendChild(dropDownLogut);
     dropDonwButtons.appendChild(dropDownProfile);
     navDropDown.appendChild(dropDonwButtons);
