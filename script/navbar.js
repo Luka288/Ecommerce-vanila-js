@@ -117,6 +117,7 @@ export function buildNavigation() {
     profileT.classList.add("profileT");
     logOut.classList.add("nav-items", "wrapLis", "logoutItem");
     cartLi.classList.add("nav-items", "wrapLis");
+    cartPage.classList.add("fixA");
 
     cartPage.textContent = "Cart";
     cartPage.href = "/cart.html";
@@ -167,6 +168,7 @@ export function buildNavigation() {
     dropDownCart.textContent = cartPage.textContent;
 
     dropDownCart.href = cartPage.href;
+    dropDownCart.classList.add("fixA");
 
     dropDownLogut.classList.add("logoutItem");
 

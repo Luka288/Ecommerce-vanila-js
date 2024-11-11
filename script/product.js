@@ -92,10 +92,8 @@ async function createCart(_id) {
     );
 
     const parse = await sendID.json();
-    console.log(parse);
 
     if (parse.error === "User already created cart, use patch endpoint") {
-      console.log(parse);
       getCart(token, _id, 1);
     }
   } catch (error) {}
@@ -121,8 +119,6 @@ async function getCart(token, _id, quantity) {
     );
 
     const parseRequest = await requestCart.json();
-
-    console.log(parseRequest);
   } catch (error) {}
 }
 
