@@ -212,6 +212,7 @@ export function buildNavigation() {
       });
     });
   } else {
+    searchOptions.style.left = "55%";
     logo.classList.add("logo");
     logo.textContent = "Shop";
     logo.href = "/";

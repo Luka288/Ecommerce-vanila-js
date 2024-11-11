@@ -2,6 +2,7 @@ import { buildNavigation } from "./navbar.js";
 import { guard } from "./routes.js";
 import { buildResponsiveCategory } from "./category.js";
 import { canSave } from "./cookiesInfo.js";
+import Swal from "../node_modules/sweetalert2/src/sweetalert2.js";
 import {
   emailRegex,
   lastNameRegex,
@@ -205,6 +206,10 @@ async function signUp(user) {
     }
   } catch (error) {
     //! swal fire
+    Toast.fire({
+      icon: "error",
+      title: "Somthing went wrong",
+    });
   }
 }
 
