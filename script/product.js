@@ -1,6 +1,6 @@
 import { buildNavigation } from "./navbar.js";
 import { buildResponsiveCategory } from "./category.js";
-// import { productPageGuard } from "./routes.js";
+import Swal from "../node_modules/sweetalert2/src/sweetalert2.js";
 
 const thumbnails = document.getElementById("thumbnails");
 const mainPhotos = document.querySelector(".mainPhotos");
@@ -22,6 +22,17 @@ const addToCart = document.querySelector(".addToCart");
 
 const priceResp = document.querySelector(".price");
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  },
+});
 init();
 
 function init() {
@@ -54,11 +65,22 @@ async function specificProd(_id) {
 
     const parseItem = await itemResponse.json();
 
+    if (parseItem.stock === 0) {
+      addToCart.disabled = true;
+    }
+
     buildDescription(parseItem);
     buildSplide(parseItem);
     buildStatic(parseItem);
 
     addToCart.addEventListener("click", function () {
+      if (parseItem.stock === 0) {
+        Toast.fire({
+          icon: "error",
+          title: "Item is out of stock",
+        });
+        return;
+      }
       createCart(parseItem._id);
     });
   } catch (error) {
@@ -119,6 +141,8 @@ async function getCart(token, _id, quantity) {
     );
 
     const parseRequest = await requestCart.json();
+
+    console.log(parseRequest);
   } catch (error) {}
 }
 

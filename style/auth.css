@@ -148,3 +148,18 @@
   color: red;
   font-size: 12px;
 }
+
+@media (max-width: 320px) {
+  .authCont input {
+    width: 200px;
+  }
+
+  .passwordContainer {
+    width: auto;
+  }
+
+  .showHide {
+    top: 50%;
+    right: 5px;
+  }
+}
