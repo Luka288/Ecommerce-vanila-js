@@ -1,10 +1,18 @@
 import { buildNavigation } from "./navbar.js";
 
+const total = document.querySelector(".total");
+const countOfItems = document.querySelector(".countOfItems");
 const items = document.querySelector(".items");
+const nothingFound = document.querySelector(".nothingFound");
+const info = document.querySelector(".info");
+
+let totalPrice = 0;
+let countItems = [];
 
 init();
 
 function init() {
+  checkPage();
   let userToken = "";
 
   if (Cookies.get("refresh_token")) {
@@ -49,8 +57,11 @@ async function loadProducts(_id) {
     );
 
     const parseItems = await loadCartItems.json();
-    console.log(parseItems);
     buildItems(parseItems);
+
+    console.log(parseItems);
+    countItems.push(parseItems);
+    console.log(countItems.length);
   } catch (error) {}
 }
 
@@ -94,13 +105,15 @@ function buildItems(item) {
   itemContainer.appendChild(titlePrice);
 
   removeItem.addEventListener("click", function () {
-    removeItemF(item._id, itemContainer);
+    removeItemF(item._id, itemContainer, item.price.current);
+    checkPage();
   });
 
   items.appendChild(itemContainer);
+  calcTotal(item);
 }
 
-async function removeItemF(_id, itemContainer) {
+async function removeItemF(_id, itemContainer, price) {
   let user_token;
 
   if (Cookies.get("refresh_token")) {
@@ -125,5 +138,37 @@ async function removeItemF(_id, itemContainer) {
     const parse = await sendItem.json();
 
     itemContainer.remove();
+    totalPrice -= price;
+    countItems = countItems.filter((item) => item._id !== _id);
+    updateUI();
   } catch (error) {}
+}
+
+function updateUI() {
+  countOfItems.textContent = countItems.length;
+  total.textContent = `${totalPrice} USD`;
+  checkPage();
+}
+
+function calcTotal(item) {
+  totalPrice += item.price.current;
+  countItems.push(item);
+
+  countOfItems.textContent = countItems.length;
+
+  total.textContent = totalPrice;
+  checkPage();
+}
+
+function checkPage() {
+  if (countItems.length == 0) {
+    nothingFound.style.display = "flex";
+    items.style.display = "none";
+    info.style.display = "none";
+    console.log(countItems.length);
+  } else {
+    nothingFound.style.display = "none";
+    items.style.display = "flex";
+    info.style.display = "block";
+  }
 }
