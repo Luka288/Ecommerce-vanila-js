@@ -5,6 +5,7 @@ const countOfItems = document.querySelector(".countOfItems");
 const items = document.querySelector(".items");
 const nothingFound = document.querySelector(".nothingFound");
 const info = document.querySelector(".info");
+const currencyH = document.querySelector(".currency");
 
 let totalPrice = 0;
 let countItems = [];
@@ -41,6 +42,7 @@ async function requestCart(token) {
     parseRequest.products.forEach((element) => {
       loadProducts(element.productId);
     });
+    console.log(parseRequest);
   } catch (error) {}
 }
 
@@ -58,10 +60,8 @@ async function loadProducts(_id) {
 
     const parseItems = await loadCartItems.json();
     buildItems(parseItems);
-
-    console.log(parseItems);
-    countItems.push(parseItems);
-    console.log(countItems.length);
+    updateUI();
+    checkPage();
   } catch (error) {}
 }
 
@@ -110,6 +110,7 @@ function buildItems(item) {
   });
 
   items.appendChild(itemContainer);
+  countItems.push(item);
   calcTotal(item);
 }
 
@@ -138,8 +139,13 @@ async function removeItemF(_id, itemContainer, price) {
     const parse = await sendItem.json();
 
     itemContainer.remove();
-    totalPrice -= price;
+
+    const itemToRemove = countItems.find((item) => item._id === _id);
+
+    totalPrice -= itemToRemove.price.current;
+
     countItems = countItems.filter((item) => item._id !== _id);
+
     updateUI();
   } catch (error) {}
 }
@@ -147,17 +153,25 @@ async function removeItemF(_id, itemContainer, price) {
 function updateUI() {
   countOfItems.textContent = countItems.length;
   total.textContent = `${totalPrice} USD`;
+
+  if (countItems.length > 0 && countItems[0].price) {
+    currencyH.innerHTML = `${totalPrice.toFixed(2)} <span class="total">${
+      countItems[0].price.currency
+    }</span>`;
+  }
+
   checkPage();
 }
 
 function calcTotal(item) {
   totalPrice += item.price.current;
-  countItems.push(item);
+  currencyH.innerHTML = `${totalPrice} <span class="total">${item.price.currency}</span>`;
+  // countItems.push(item);
 
   countOfItems.textContent = countItems.length;
 
   total.textContent = totalPrice;
-  checkPage();
+  updateUI();
 }
 
 function checkPage() {
