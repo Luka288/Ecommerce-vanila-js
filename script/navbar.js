@@ -3,6 +3,7 @@ const searchOptions = document.querySelector(".searchOptions");
 
 export function buildNavigation() {
   const navigation = document.getElementById("navigation");
+  const profile = document.querySelector(".profile");
 
   const logoSide = document.createElement("div");
   const buttonSide = document.createElement("div");
@@ -154,6 +155,10 @@ export function buildNavigation() {
 
     buttonsUl.appendChild(burger);
 
+    profileLi.addEventListener("click", function () {
+      window.location.href = "/profile.html";
+    });
+
     const burgerBar = document.querySelector(".headerBar");
     const navDropDown = document.querySelector(".navDropdown");
     const dropDownCart = document.createElement("a");
@@ -166,6 +171,8 @@ export function buildNavigation() {
     dropDownProfile.textContent = profileT.textContent;
     dropDownLogut.textContent = logOut.textContent;
     dropDownCart.textContent = cartPage.textContent;
+
+    dropDownProfile.href = profileT.href;
 
     dropDownCart.href = cartPage.href;
     dropDownCart.classList.add("fixA");

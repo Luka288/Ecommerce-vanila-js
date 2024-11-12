@@ -60,3 +60,14 @@
 #user-email {
   text-transform: none;
 }
+
+@media (max-width: 425px) {
+  .profileContainer {
+    width: 100%;
+    align-items: center;
+  }
+
+  #user-email {
+    font-size: 15px;
+  }
+}
