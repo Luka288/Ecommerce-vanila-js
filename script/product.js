@@ -17,6 +17,7 @@ const brandP = document.querySelector(".brandP");
 const categoryP = document.querySelector(".categoryP");
 const descP = document.querySelector(".descP");
 const addToCart = document.querySelector(".addToCart");
+const responsiveAdd = document.querySelector(".responsiveAdd");
 
 //responsive
 
@@ -81,6 +82,27 @@ async function specificProd(_id) {
         });
         return;
       }
+
+      Toast.fire({
+        icon: "success",
+        title: "Item added to cart",
+      });
+      createCart(parseItem._id);
+    });
+
+    responsiveAdd.addEventListener("click", function () {
+      if (parseItem.stock === 0) {
+        Toast.fire({
+          icon: "error",
+          title: "Item is out of stock",
+        });
+        return;
+      }
+
+      Toast.fire({
+        icon: "success",
+        title: "Item Added into cart",
+      });
       createCart(parseItem._id);
     });
   } catch (error) {
@@ -141,8 +163,6 @@ async function getCart(token, _id, quantity) {
     );
 
     const parseRequest = await requestCart.json();
-
-    console.log(parseRequest);
   } catch (error) {}
 }
 

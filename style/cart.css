@@ -9,6 +9,10 @@ main {
 
 .items {
   /* width: 50%; */
+  margin-top: 50px;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
   justify-self: center;
 }
 
@@ -53,6 +57,8 @@ main {
   width: fit-content;
   height: fit-content;
   cursor: pointer;
+  line-height: 30px;
+  padding-left: 10px;
   font-weight: 375;
   font-family: var(--main-font);
 }
