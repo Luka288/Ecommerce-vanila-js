@@ -110,3 +110,19 @@
 .productTitle {
   font-family: var(--main-font);
 }
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sale {
+  font-family: var(--main-font);
+  text-decoration: line-through;
+  color: var(--sale-color);
+}
+
+.priceContainer p {
+  font-family: var(--main-font);
+}

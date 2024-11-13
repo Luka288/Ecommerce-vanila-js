@@ -101,6 +101,7 @@ function generateCard(response) {
 
     viewProductA.textContent = "View product";
 
+    saleSpan.classList.add("sale");
     productCard.classList.add("searchedItem");
     imageContainer.classList.add("productImg");
     priceContainer.classList.add("priceContainer");

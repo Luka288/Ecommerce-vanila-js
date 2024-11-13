@@ -47,18 +47,12 @@ async function currUser(token) {
 }
 
 function userCookie() {
-  const checkAccess = Cookies.get("access_token");
+  const checkAccess = Cookies.get("refresh_token");
 
   if (checkAccess) {
     currUser(checkAccess);
   } else {
-    const sessionToken = sessionStorage.getItem("access_token");
+    const sessionToken = sessionStorage.getItem("refresh_token");
     currUser(sessionToken);
   }
-}
-
-function userSession() {}
-
-function buildInfo(params) {
-  // const
 }
