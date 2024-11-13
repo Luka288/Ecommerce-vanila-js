@@ -1,9 +1,9 @@
 /* cookies  */
 
 .cookies {
-  max-height: 220px;
+  /* max-height: 220px; */
   width: 350px;
-  height: 220px;
+  /* height: 220px; */
   visibility: hidden;
   position: fixed;
   bottom: 35px;
@@ -36,6 +36,7 @@
 }
 
 .aboutCookies {
+  font-family: var(--main-font);
   text-align: center;
 }
 

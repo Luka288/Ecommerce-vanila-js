@@ -13,7 +13,6 @@
       src="./node_modules/@splidejs/splide/dist/js/splide.min.js"
       defer
     ></script>
-    <script src="./node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="./node_modules/js-cookie/dist/js.cookie.min.js"></script>
     <script src="./node_modules/axios/dist/axios.min.js" defer></script>
     <link
@@ -26,15 +25,10 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="./node_modules/sweetalert2/dist/sweetalert2.min.css"
-    />
-    <script type="module" src="script/cart.js" defer></script>
-    <link rel="stylesheet" href="./style/reset.css" />
-    <link rel="stylesheet" href="./style/cookies.css" />
+    <script type="module" src="script/about.js" defer></script>
     <link rel="stylesheet" href="./style/navbar.css" />
-    <link rel="stylesheet" href="./style/cart.css" />
+    <link rel="stylesheet" href="./style/about.css" />
+    <link rel="stylesheet" href="./style/cookies.css" />
   </head>
   <body>
     <nav id="navigation"></nav>
@@ -57,33 +51,50 @@
       </ul>
       <ul class="detailsOfCookies cookieUl">
         <li>
-          <a href="/aboutCookies.html">About Cookies</a>
+          <a href="">About Cookies</a>
         </li>
       </ul>
     </div>
     <main>
-      <div class="nothingFound">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/16961/16961608.png"
-          alt=""
-        />
-        <h1>Cart is empty :(</h1>
-      </div>
       <div class="bg"></div>
-      <section class="items"></section>
-      <section class="info">
-        <div class="totalPrice">
-          <h1 class="priceLen currency"><span class="total"></span></h1>
-          <h2 class="priceLen">
-            Total Items : <span class="countOfItems"></span>
-          </h2>
+      <section class="infoBox">
+        <div class="basicInfo">
+          This website uses cookies to improve your browsing experience. Cookies
+          help remember your preferences and provide a more personalized visit,
+          enabling features like keeping you logged in and displaying relevant
+          content. We value your privacy and security. To learn more, check out
+          the related topics at the bottom of the page.
         </div>
-        <div class="purchaseC">
-          <ul class="purchaseUl">
-            <li class="wrapper">
-              <a>Purchase</a>
-            </li>
-          </ul>
+
+        <div class="accordion">
+          <div class="accordion-items">
+            <div class="accordion-item">
+              <button class="accordion-title">what info do we store?</button>
+              <div class="accordion-content">
+                <p>
+                  Why are we storing cookies? We use cookies to save your
+                  authorization information, so that when you close and reopen
+                  the webpage, your account remains logged in. This ensures a
+                  seamless experience, allowing you to pick up where you left
+                  off without the need to re-enter your login details.
+                </p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-title">
+                What happends if u dont agree
+              </button>
+              <div class="accordion-content">
+                <p>
+                  What happens if you don't agree? If you choose not to accept
+                  cookies, your login information will only be stored
+                  temporarily during your visit. This means that once you close
+                  the browser or navigate away, you'll be logged out and will
+                  need to log in again when you return.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
