@@ -277,6 +277,12 @@
 }
 
 @media (max-width: 425px) {
+
+
+  .descP{
+    width: 220px;
+  }
+
   #main-carousel {
     width: 300px;
     height: auto;
@@ -289,8 +295,20 @@
 }
 
 @media (max-width: 375px) {
+
+  .descP{
+    width: 220px;
+  }
+
   .wrapForResp {
     display: flex;
     flex-direction: column;
+  }
+}
+
+
+@media (max-width: 320px){
+  .descP{
+    width: 220px;
   }
 }

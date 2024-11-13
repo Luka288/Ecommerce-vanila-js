@@ -305,6 +305,12 @@ main {
   z-index: 100;
 }
 
+@media (max-width: 1024px){
+  .wrapCategory{
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .headerBar {
     display: flex;
@@ -343,6 +349,12 @@ main {
 }
 
 @media (max-width: 425px) {
+
+
+  .top{
+    height: 200px;
+  }
+
   .searchBar {
     width: 150px;
     padding-left: 25%;
