@@ -61,9 +61,18 @@
   text-transform: none;
 }
 
+.cookiesPage {
+  margin-top: 20px;
+}
+
+.aboutCookies {
+  font-size: 20px;
+  color: black;
+}
+
 @media (max-width: 425px) {
   .profileContainer {
-    width: 100%;
+    width: 75%;
     align-items: center;
   }
 
