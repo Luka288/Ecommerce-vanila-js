@@ -2,7 +2,7 @@
 
 .infoBox {
   width: 700px;
-  height: 500px;
+  height: auto;
   margin-top: 50px;
   box-shadow: 1px 1px 24px -2px rgba(0, 0, 0, 0.41);
   -webkit-box-shadow: 1px 1px 24px -2px rgba(0, 0, 0, 0.41);
