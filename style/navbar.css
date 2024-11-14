@@ -1,5 +1,3 @@
-@import url(./root.css);
-
 body,
 html {
   margin: 0;
@@ -463,7 +461,7 @@ main {
   color: black;
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .headerBar {
     display: flex;
     align-items: center;
@@ -532,4 +530,4 @@ main {
   .searchOptions.animateHeight {
     width: 300px;
   }
-}
+} */

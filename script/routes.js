@@ -10,7 +10,6 @@ export function guard() {
     refresh_token = sessionStorage.getItem("refresh_token");
   }
 
-  // const token = localStorage.getItem("access_token");
   const protectedRoutes = ["/profile.html"];
   const afterAuthProtectedRoutes = ["/auth.html"];
 
@@ -23,11 +22,3 @@ export function guard() {
     window.location.href = "/index.html";
   }
 }
-
-// export function productPageGuard() {
-//   let check = localStorage.getItem("saveitem");
-
-//   if (check) {
-//     console.log(check);
-//   }
-// }

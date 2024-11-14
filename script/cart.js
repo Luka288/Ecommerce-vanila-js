@@ -2,7 +2,7 @@ import { buildNavigation } from "./navbar.js";
 
 const total = document.querySelector(".total");
 const countOfItems = document.querySelector(".countOfItems");
-const items = document.querySelector(".items");
+const items = document.querySelector(".itemsCart");
 const nothingFound = document.querySelector(".nothingFound");
 const info = document.querySelector(".info");
 const currencyH = document.querySelector(".currency");
