@@ -1,3 +1,12 @@
+:root {
+  --main-color: #ff5a36;
+  --sale-color: #e3242b;
+  --product-card-font-size: 12px;
+  --main-font: "Roboto", Sans-Serif;
+  --secondary-font: "Montserrat", Sans-Serif;
+  --section-width: 69%;
+}
+
 body,
 html {
   margin: 0;
@@ -159,7 +168,7 @@ main {
 
 .buttons ul li a {
   text-decoration: none;
-  font-family: "Montserrat", "Sans-Serif";
+  font-family: var(--main-font);
   color: black;
   text-transform: capitalize;
   cursor: pointer;
@@ -177,7 +186,7 @@ main {
   text-decoration: none;
   color: black;
   text-transform: capitalize;
-  font-family: "Montserrat", "Sans-Serif";
+  font-family: var(--main-font);
 }
 
 .activeBrands {
@@ -293,7 +302,12 @@ main {
   flex-direction: column;
   gap: 30px;
   color: white;
-  font-family: "Montserrat", "Sans-Serif";
+}
+
+.navDropdown .dropButtons a {
+  color: white;
+  text-decoration: none;
+  font-family: var(--main-font);
 }
 
 .userIcon {
@@ -455,11 +469,11 @@ main {
   display: flex;
   gap: 30px;
 }
-
+/* 
 .fixA {
   text-decoration: none;
-  color: black;
-}
+  color: white;
+} */
 
 /* @media (max-width: 1024px) {
   .headerBar {
