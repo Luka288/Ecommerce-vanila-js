@@ -13,7 +13,7 @@
       src="./node_modules/@splidejs/splide/dist/js/splide.min.js"
       defer
     ></script>
-    <script src="./node_modules/js-cookie/dist/js.cookie.min.js"></script>
+    <script src="./node_modules/js-cookie/dist/js.cookie.min.js" defer></script>
     <script src="./node_modules/axios/dist/axios.min.js" defer></script>
     <link
       rel="stylesheet"
@@ -25,7 +25,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
-    <script type="module" src="script/main.js" defer></script>
+    <script type="module" src="script/main.js"></script>
     <link rel="stylesheet" href="./style/cookies.css" />
     <link rel="stylesheet" href="./style/navbar.css" />
     <link rel="stylesheet" href="./style/style.css" />
@@ -72,11 +72,11 @@
             <div class="buttons">
               <ul>
                 <li class="phonesLi">
-                  <p class="showLaptop brandBtn" laptopId="1">laptops</p>
+                  <p class="showLaptop brandBtn" data-laptop-id="1">laptops</p>
                 </li>
-                <div class="brands laptopBrands"></div>
+                <li class="brands laptopBrands"></li>
                 <li>
-                  <p class="showPhone brandBtn" phoneId="2">phones</p>
+                  <p class="showPhone brandBtn" data-phone-id="2">phones</p>
                 </li>
                 <li class="brands phoneBrands"></li>
               </ul>

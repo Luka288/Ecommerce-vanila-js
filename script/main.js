@@ -361,7 +361,7 @@ function brandNames(name, container) {
 
 // laptop category
 showLaptop.addEventListener("mouseover", function () {
-  const laptopCategory = showLaptop.getAttribute("laptopId");
+  const laptopCategory = showLaptop.getAttribute("data-laptop-id");
   if (laptopBrands.children.length == 0) {
     loadBrands(laptopCategory, laptopBrands);
   }
@@ -390,7 +390,7 @@ laptopBrands.addEventListener("mouseout", function () {
 
 // phone category
 showPhone.addEventListener("mouseover", function () {
-  const phoneCategory = showPhone.getAttribute("phoneId");
+  const phoneCategory = showPhone.getAttribute("data-phone-id");
   if (phoneBrands.children.length == 0) {
     loadBrands(phoneCategory, laptopBrands);
   }

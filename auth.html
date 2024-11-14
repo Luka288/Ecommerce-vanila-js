@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script type="module" src="./script/navbar.js" defer></script>
-    <script type="module" src="./script/auth.js" defer></script>
+    <script type="module" src="./script/navbar.js"></script>
+    <script type="module" src="./script/auth.js"></script>
     <script
       src="https://kit.fontawesome.com/6022f77fe4.js"
       crossorigin="anonymous"
+      defer
     ></script>
-    <script src="./node_modules/js-cookie/dist/js.cookie.min.js"></script>
+    <script src="./node_modules/js-cookie/dist/js.cookie.min.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -64,7 +65,7 @@
       <section class="authCont">
         <section class="wrapForms">
           <section class="login">
-            <form action="" id="signInForm">
+            <form id="signInForm">
               <div class="emailContainer inputCon">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" />
@@ -82,7 +83,7 @@
           </section>
           <section class="signUp">
             <h1>Register</h1>
-            <form action="" id="signUpForm">
+            <form id="signUpForm">
               <div class="usernameCon inputCon">
                 <label for="firstName">First name</label>
                 <input type="text" name="firstName" id="firstName" />
@@ -129,7 +130,7 @@
                   <input type="radio" name="gender" id="male" value="MALE" />
                 </div>
                 <div class="femaleCon">
-                  <label for="female ">Female</label>
+                  <label for="female">Female</label>
                   <input
                     type="radio"
                     name="gender"
@@ -137,7 +138,7 @@
                     value="FEMALE"
                   />
                 </div>
-                <p class="error-text" id="error-age"></p>
+                <p class="error-text" id="error-gender"></p>
               </div>
               <a class="toggleLogin">Have an account?</a>
               <button type="submit" id="signUpBtn">Register</button>
