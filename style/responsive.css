@@ -225,6 +225,10 @@
   .responsiveCategory {
     display: flex;
   }
+
+  .searchOptions.animateHeight {
+    left: none;
+  }
 }
 
 @media (max-width: 425px) {
