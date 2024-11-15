@@ -330,17 +330,6 @@ function mountSplide() {
     },
   });
 
-  var brandSplider = new Splide(".brandsSplider", {
-    // type: "loop",
-    drag: "free",
-    focus: "center",
-    perPage: 3,
-    autoScroll: {
-      speed: 1,
-    },
-  });
-
-  brandSplider.mount();
   lenovoSplider.mount();
   samsungSplider.mount();
   asusSplider.mount();
