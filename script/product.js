@@ -17,7 +17,7 @@ const brandP = document.querySelector(".brandP");
 const categoryP = document.querySelector(".categoryP");
 const descP = document.querySelector(".descP");
 const addToCart = document.querySelector(".addToCart");
-const responsiveAdd = document.querySelector(".responsiveAdd");
+const responsiveAdd = document.querySelectorAll(".responsiveAdd");
 
 //responsive
 
@@ -90,20 +90,21 @@ async function specificProd(_id) {
       createCart(parseItem._id);
     });
 
-    responsiveAdd.addEventListener("click", function () {
-      if (parseItem.stock === 0) {
+    responsiveAdd.forEach((bt) => {
+      bt.addEventListener("click", function () {
+        if (parseItem.stock === 0) {
+          Toast.fire({
+            icon: "error",
+            title: "Item is out of stock",
+          });
+          return;
+        }
         Toast.fire({
-          icon: "error",
-          title: "Item is out of stock",
+          icon: "success",
+          title: "Item Added into cart",
         });
-        return;
-      }
-
-      Toast.fire({
-        icon: "success",
-        title: "Item Added into cart",
+        createCart(parseItem._id);
       });
-      createCart(parseItem._id);
     });
   } catch (error) {
     //! swal fire on error
@@ -212,6 +213,8 @@ function buildSplide(response) {
   if (response.images.length === 0) {
     const mainImgCon = document.createElement("li");
     const mainImg = document.createElement("img");
+
+    mainImg.classList("productPageImg");
 
     mainImg.src = response.thumbnail;
     mainImgCon.appendChild(mainImg);
