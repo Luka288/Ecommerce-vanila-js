@@ -469,11 +469,11 @@ main {
   display: flex;
   gap: 30px;
 }
-/* 
+
 .fixA {
   text-decoration: none;
-  color: white;
-} */
+  color: black;
+}
 
 /* @media (max-width: 1024px) {
   .headerBar {
