@@ -142,9 +142,36 @@
   }
 }
 
+@media (max-width: 425px) {
+  .cookies {
+    right: 10px;
+  }
+
+  .aboutCookies {
+    font-size: 10px;
+  }
+
+  .cookieUl li {
+    height: 25px;
+  }
+}
+
 @media (max-width: 320px) {
   .descP {
     width: 220px;
+  }
+
+  .cookies {
+    width: auto;
+    right: 0px;
+  }
+
+  .aboutCookies {
+    font-size: 10px;
+  }
+
+  .cookieUl li {
+    height: 25px;
   }
 }
 
@@ -169,6 +196,20 @@
     height: 150px;
     position: fixed;
     bottom: 0;
+  }
+
+  .cookies {
+    width: auto;
+    height: auto;
+    left: 10px;
+  }
+
+  .aboutCookies {
+    font-size: 13px;
+  }
+
+  .cookie ul li {
+    height: 25px;
   }
 }
 
