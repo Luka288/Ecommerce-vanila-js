@@ -35,19 +35,17 @@ async function currUser(token) {
       },
     });
 
-    // if (!userRes.ok) {
-    //   verifyContaienr.style.display = "block";
-    //   profileContainer.style.display = "none";
-    //   Toast.fire({
-    //     icon: "success",
-    //     title: "Check email to verify",
-    //   });
-    //   throw new Error("Check email to verify");
-    // }
+    if (!userRes.ok) {
+      Toast.fire({
+        icon: "error",
+        title: "Check email to verify",
+      });
+      verifyContaienr.style.display = "block";
+      profileContainer.style.display = "none";
+      throw new Error("Check email to verify");
+    }
 
     const parseUser = await userRes.json();
-
-    console.log(parseUser);
 
     for (let info in parseUser) {
       const userItem = document.getElementById("user-" + info);
@@ -59,7 +57,7 @@ async function currUser(token) {
   } catch (error) {
     Toast.fire({
       icon: "error",
-      title: "error",
+      title: "Check email to verify",
     });
   }
 }

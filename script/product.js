@@ -154,10 +154,19 @@ async function createCart(_id) {
 
     const parse = await sendID.json();
 
+    if (parse.error === "User needs to verify email") {
+      throw new Error("Did you verifyed email?");
+    }
+
     if (parse.error === "User already created cart, use patch endpoint") {
       getCart(token, _id, 1);
     }
-  } catch (error) {}
+  } catch (error) {
+    Toast.fire({
+      icon: "error",
+      title: "Did you verifyed email?",
+    });
+  }
 }
 
 async function getCart(token, _id, quantity) {
