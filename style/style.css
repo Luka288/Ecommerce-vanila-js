@@ -95,7 +95,7 @@ main {
   gap: 15px;
   width: 100%;
   height: 100%;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .brands a {
@@ -524,6 +524,7 @@ main {
 .verifyContaienr {
   display: none;
   text-align: center;
+  font-family: var(--main-font);
 }
 
 .imgCont {

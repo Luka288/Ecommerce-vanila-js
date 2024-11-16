@@ -35,17 +35,19 @@ async function currUser(token) {
       },
     });
 
-    if (!userRes.ok) {
-      verifyContaienr.style.display = "block";
-      profileContainer.style.display = "none";
-      Toast.fire({
-        icon: "success",
-        title: "Check email to verify",
-      });
-      throw new Error("Check email to verify");
-    }
+    // if (!userRes.ok) {
+    //   verifyContaienr.style.display = "block";
+    //   profileContainer.style.display = "none";
+    //   Toast.fire({
+    //     icon: "success",
+    //     title: "Check email to verify",
+    //   });
+    //   throw new Error("Check email to verify");
+    // }
 
     const parseUser = await userRes.json();
+
+    console.log(parseUser);
 
     for (let info in parseUser) {
       const userItem = document.getElementById("user-" + info);

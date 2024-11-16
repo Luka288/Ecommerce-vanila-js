@@ -90,6 +90,22 @@ async function specificProd(_id) {
       createCart(parseItem._id);
     });
 
+    purchaseBtn.addEventListener("click", function () {
+      if (parseItem.stock === 0) {
+        Toast.fire({
+          icon: "error",
+          title: "Item is out of stock",
+        });
+        return;
+      }
+
+      Toast.fire({
+        icon: "success",
+        title: "Item added to cart",
+      });
+      createCart(parseItem._id);
+    });
+
     responsiveAdd.forEach((bt) => {
       bt.addEventListener("click", function () {
         if (parseItem.stock === 0) {
