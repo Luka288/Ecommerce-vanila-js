@@ -1,8 +1,21 @@
 import { buildNavigation } from "./navbar.js";
 import { guard } from "./routes.js";
+import Swal from "../node_modules/sweetalert2/src/sweetalert2.js";
 
 const verifyContaienr = document.querySelector(".verifyContaienr");
 const profileContainer = document.querySelector(".profileContainer");
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-right",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  },
+});
 
 init();
 
@@ -11,8 +24,6 @@ function init() {
   userCookie();
   guard();
 }
-
-//verifyContaienr.style.display = "none";
 
 async function currUser(token) {
   try {
@@ -27,6 +38,10 @@ async function currUser(token) {
     if (!userRes.ok) {
       verifyContaienr.style.display = "block";
       profileContainer.style.display = "none";
+      Toast.fire({
+        icon: "success",
+        title: "Check email to verify",
+      });
       throw new Error("Check email to verify");
     }
 
@@ -39,10 +54,11 @@ async function currUser(token) {
         userItem.textContent += parseUser[info];
       }
     }
-
-    console.log(parseUser);
   } catch (error) {
-    console.log(error);
+    Toast.fire({
+      icon: "error",
+      title: "error",
+    });
   }
 }
 

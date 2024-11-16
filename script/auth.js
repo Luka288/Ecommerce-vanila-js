@@ -175,8 +175,6 @@ signInForm.addEventListener("submit", function (e) {
 
   if (Object.keys(loginErrors).length === 0) {
     signIn(userInfo);
-  } else {
-    console.log(Object.keys(loginErrors));
   }
 });
 
@@ -233,9 +231,12 @@ async function verifyEmail(email) {
     }
 
     const parseResponse = await sendEmail.json();
-
-    console.log(parseResponse);
-  } catch (error) {}
+  } catch (error) {
+    Toast.fire({
+      icon: "error",
+      title: "Could not find email",
+    });
+  }
 }
 
 async function signIn(userInfo) {

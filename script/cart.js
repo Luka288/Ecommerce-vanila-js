@@ -7,6 +7,18 @@ const nothingFound = document.querySelector(".nothingFound");
 const info = document.querySelector(".info");
 const currencyH = document.querySelector(".currency");
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-right",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  },
+});
+
 let totalPrice = 0;
 let countItems = [];
 
@@ -42,8 +54,12 @@ async function requestCart(token) {
     parseRequest.products.forEach((element) => {
       loadProducts(element.productId);
     });
-    console.log(parseRequest);
-  } catch (error) {}
+  } catch (error) {
+    Toast.fire({
+      icon: "error",
+      title: "Cart is empty",
+    });
+  }
 }
 
 async function loadProducts(_id) {
@@ -179,7 +195,6 @@ function checkPage() {
     nothingFound.style.display = "flex";
     items.style.display = "none";
     info.style.display = "none";
-    console.log(countItems.length);
   } else {
     nothingFound.style.display = "none";
     items.style.display = "flex";
